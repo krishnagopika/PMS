@@ -22,9 +22,11 @@ export class NurAddDiagnosisInfoComponent implements OnInit{
   currentDate = new Date();
   patient:Patient|undefined;
   message:any;
-  check:boolean=false;
+  check:boolean=true;
   allergy:number[]=[];
   patient_id:number=history.state.patient_id;
+  allergyDisplay:Allergy[]=[];
+  allergiesRetreived:Allergy[]=[];
   blood_group:string="";
   age:number=0;
   bp:string[]=[];
@@ -66,12 +68,13 @@ export class NurAddDiagnosisInfoComponent implements OnInit{
     this.appointment_id=history.state.appointment_id;
      
       nurseService.getRecentVisitDetails(this.patient_id).subscribe(
-        (data)=>{this.visitdetails=data,this.patient_id=this.visitdetails.patient_id, console.log(data);},
+        (data)=>{this.visitdetails=data,this.patient_id=this.visitdetails.patient_id, this.allergy=this.visitdetails.allergy
+           console.log(data, " ", this.allergy);},
        
         err => {
           console.log(err.message),
           this.message="Unable to load visit details",
-          this.check=true;
+          this.check=false;
         }
         );
 
@@ -92,13 +95,21 @@ export class NurAddDiagnosisInfoComponent implements OnInit{
           }
           );
           nurseService.getAllAlergies().subscribe(
-            (data)=>{this.allergies=data, console.log(data)
+            (data)=>{this.allergiesRetreived=data, console.log("data",this.allergiesRetreived,this.visitdetails)
+              for (let a of this.allergiesRetreived){
+                if(this.visitdetails.allergy.includes(a.id))
+                {
+                  this.allergyDisplay.push(a)
+                }
+              }
             },
            
             err => {
               console.log(err.message)
             }
             );
+          
+         
 
 
 

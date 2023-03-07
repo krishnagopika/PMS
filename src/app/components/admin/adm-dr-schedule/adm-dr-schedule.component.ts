@@ -83,6 +83,7 @@ openDialogUpdate(email: string,id: number,date: string[]) {
     (data)=>{
       this.physicianAvailability=data;
       console.log(data),
+      console.log(physicianAv.id)
       this.adminService.updatePhysicianAvailability(this.physicianAvailability, physicianAv.id).subscribe(
         (data)=>{(console.log(data));},
         err=>{

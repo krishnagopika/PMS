@@ -9,21 +9,18 @@
   <div class="child">
     <mat-form-field appearance="fill" class="ui-half-width">
       <mat-label>Appointment Date</mat-label>
-      <input matInput [matDatepicker]="picker" [formControl]="dobFormControl">
+      <input matInput [(ngModel)]="searchDate" [matDatepicker]="picker" [formControl]="dobFormControl" (dateInput)="searchAppointments(searchDate)">
       
       <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>        
     </div>&nbsp;
-    <div class="child">
-    <button mat-raised-button color="primary">Apply</button>
-  </div>
 
 </mat-card-subtitle><br>
 </div>
     <mat-card-header>
       <mat-card-title>Appointments To be Accepted</mat-card-title>
-      <mat-card-subtitle id="appointment-date"> <h4>{{currentDate | date:'dd-MMM-yyyy'}}</h4></mat-card-subtitle>
+      <mat-card-subtitle id="appointment-date"> <h4>{{date | date:'dd-MMM-yyyy'}}</h4></mat-card-subtitle>
     </mat-card-header>
     <br/>
     <mat-card-content>
@@ -58,8 +55,8 @@
             <!-- <th mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
             <td mat-cell *matCellDef="let row"> <button mat-button  (click)="openDialog()">{{row.action}}</button></td> -->
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
-            <td mat-cell *matCellDef="let row"> <button mat-raised-button color="primary" (click)="openDialog()">Accept</button>&nbsp;&nbsp;
-                <button mat-raised-button color="accent" (click)="closeDialog()">Reject</button>
+            <td mat-cell *matCellDef="let row"> <button mat-raised-button color="primary" (click)="acceptAppointment(row.id)">Accept</button>&nbsp;&nbsp;
+                <button mat-raised-button color="accent" (click)="rejectAppointment(row.id)">Reject</button>
             </td>
           </ng-container>
 

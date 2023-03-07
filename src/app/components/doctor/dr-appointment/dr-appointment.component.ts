@@ -6,48 +6,9 @@ import {MatDialog, MatDialogConfig} from "@angular/material/dialog";
 import { AppointmentConfirmDialogComponent } from '../appointment-confirm-dialog/appointment-confirm-dialog.component';
 import { AdmDrSheduleDelComponent } from '../../admin/adm-dr-shedule-del/adm-dr-shedule-del.component';
 import { FormControl, Validators } from '@angular/forms';
+import { Appointment } from 'src/app/model/appointment';
+import { DoctorService } from 'src/app/service/doctor/doctor.service';
 
-
-export interface BookedAppointment {
-  id: string;
-  name: string;
-  booked: string;
-  notes: string;
-  action: string;
-}
-
-/** Constants used to fill up our data base. */
-const NOTES: string[] = [
-  'Acne is a common skin condition that affects most people at some point. It causes spots, oily skin and sometimes skin that\'s hot or painful to touch.',
-  'Arthritis is a common condition that causes pain and inflammation in a joint.',
-  'Cirrhosis is scarring of the liver caused by continuous, long-term liver damage.',
-  'A coma is a state of unconsciousness where a person is unresponsive and cannot be woken.',
-  'Flu (influenza) is a common infectious viral illness spread by coughs and sneezes. It can be very unpleasant, but you\'ll usually begin to feel better within about a week.',
-  'Food poisoning is an illness caused by eating contaminated food. It\'s not usually serious and most people get better within a few days without treatment.',
-  'Hyperhidrosis is a common condition in which a person sweats excessively',
-  'Measles is a highly infectious viral illness that can be very unpleasant and sometimes lead to serious complications. It\'s now uncommon in the UK because of the effectiveness of vaccination.',
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
 
 
 @Component({
@@ -59,29 +20,74 @@ export class DrAppointmentComponent {
   dobFormControl = new FormControl('', [Validators.required]);
   currentDate = new Date();
   displayedColumns: string[] = ['id', 'name', 'booked', 'notes', 'action'];
-  dataSource: MatTableDataSource<BookedAppointment>;
-
-  today: string = new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear();
-  today1: string = (new Date().getDate()+1) + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear();
+  dataSource: any;
+  email:any;
+  appointments:Appointment[]=[];
+  acceptance="Pending";
+  searchDate:any;
+  date="";
+  message="";
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public dialog: MatDialog) {
-    // Create 100 users
-    const users = Array.from({length: 5}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
+  constructor(public dialog: MatDialog, private doctorService:DoctorService) {
+    this.date=this.currentDate.toDateString();
+    this.email=sessionStorage.getItem('email');
+    const one = this.email.split("@");
+    const two = one[0].split(".");
+    const name ="Dr "+two[0]+" "+two[1]+"( "+two[2]+" )";
+    this.email=name;
+    
+    console.log(this.email)
+   this.doctorService.getAllAppointments(this.email,this.date,this.acceptance).subscribe(
+    (date)=>{
+      this.appointments=date, console.log(this.appointments), this.dataSource = new MatTableDataSource(this.appointments);
+    },
+    err=>{
+      console.log(err.message);
+    }
+   )
   }
 
 
-  openDialog() {
-    this.dialog.open(AppointmentConfirmDialogComponent);
+  acceptAppointment(appointmentId:number) {
+    const acceptance="Accepted";
+    this.doctorService.updateAppointment(appointmentId,acceptance).subscribe(
+      (data)=>{
+        console.log(data),
+        this.message= " Appointment Accepted",
+        this.dialog.open(AppointmentConfirmDialogComponent, {
+          data: this.message});
+      },
+      err=>{
+        console.log(err.message),
+        this.message="Unable to Accept the Appointment",
+        this.dialog.open(AppointmentConfirmDialogComponent, {
+          data: this.message});
+
+      }
+    )
+
+   
   }
-  closeDialog(){
-    const dialogConfig = new MatDialogConfig();
-    const dialogRef = this.dialog.open(AdmDrSheduleDelComponent, dialogConfig);
+  rejectAppointment(appointmentId:number){
+    const acceptance="Rejected";
+    this.doctorService.updateAppointment(appointmentId,acceptance).subscribe(
+      (data)=>{
+        console.log(data),
+        this.message= " Appointment Rejected",
+        this.dialog.open(AppointmentConfirmDialogComponent, {
+          data: this.message});
+      },
+      err=>{
+        console.log(err.message),
+        this.message="Unable to Reject the Appointment",
+        this.dialog.open(AppointmentConfirmDialogComponent, {
+          data: this.message});
+
+      }
+    )
   }
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -96,22 +102,23 @@ export class DrAppointmentComponent {
       this.dataSource.paginator.firstPage();
     }
   }
-}
+  searchAppointments(searchDate:Date){
+    this.email=sessionStorage.getItem('email');
+    this.date=searchDate.toDateString();
+    const one = this.email.split("@");
+    const two = one[0].split(".");
+    const name ="Dr "+two[0]+" "+two[1]+"( "+two[2]+" )";
+    this.email=name;
+    
+    console.log(this.email)
+   this.doctorService.getAllAppointments(this.email,searchDate.toDateString(),this.acceptance).subscribe(
+    (date)=>{
+      this.appointments=date, console.log(this.appointments), this.dataSource = new MatTableDataSource(this.appointments);
+    },
+    err=>{
+      console.log(err.message);
+    }
+   )
 
-/** Builds and returns a new User. */
-function createNewUser(id: number): BookedAppointment {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
-
-  return {
-    id: id.toString(),
-    name: name,
-    // booked: new Date(new Date().getTime() + (Math.round(Math.random() * 100) * 24 * 60 * 60 * 1000)).toString(),
-    booked: new Date().getDate() + '-' + (new Date().getMonth() + 1) + '-' + new Date().getFullYear(),
-    notes: NOTES[Math.round(Math.random() * (NOTES.length - 1))],
-    action: 'Confirm'
-  };
+  }
 }

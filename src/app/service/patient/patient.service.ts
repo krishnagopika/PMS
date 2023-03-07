@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Appointment } from 'src/app/model/appointment';
+import { HealthRecord } from 'src/app/model/health-record';
 import { Patient } from 'src/app/model/patient';
 import { PatientLogin } from 'src/app/model/patient-login';
 import { PhysicianAvailability } from 'src/app/model/physician-availability';
@@ -55,7 +56,15 @@ export class PatientService {
   public getAllPhysicianAvailabilities():Observable<any>{
     return this.http.get<PhysicianAvailability[]>('http://localhost:8089/api/physician-availability');
   }
+  public getPatientHealthRecords(patient_id:number):Observable <any>{
+    const params = new HttpParams()
+   .set('patient_id', patient_id);
+    
+    return this.http.get<HealthRecord[]>('http://localhost:8089/api/health-records', {params});
+    
+  }
+}
   
 
  
-}
+

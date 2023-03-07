@@ -6,7 +6,7 @@ import {MatTableDataSource} from '@angular/material/table';
 import { Location } from '@angular/common'
 import { ViewPrescriptionDialogComponent } from '../../common/view-prescription-dialog/view-prescription-dialog.component';
 import { HealthRecord } from '../../../model/health-record';
-import { HealthRecordService } from '../../../service/health-record/health-record.service';
+import { PatientService } from 'src/app/service/patient/patient.service';
 
 
 @Component({
@@ -27,9 +27,9 @@ export class PatientHealthInfoComponent  implements AfterViewInit{
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public dialog: MatDialog, private location: Location, healthrecordService:HealthRecordService) {
+  constructor(public dialog: MatDialog, private location: Location, patientService:PatientService) {
     this.patient_id=sessionStorage.getItem('patient_id');
-    healthrecordService.getPatientHealthRecords(this.patient_id).subscribe(
+    patientService.getPatientHealthRecords(this.patient_id).subscribe(
       (data)=>{this.healthrecords=data, console.log(data,this.patient_id),
         this.dataSource=new MatTableDataSource(this.healthrecords),console.log(data)
         ;

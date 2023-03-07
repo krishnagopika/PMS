@@ -8,7 +8,6 @@ import { PatientNewAppointmentComponent } from '../patient-new-appointment/patie
 import { PatientService } from '../../../service/patient/patient.service';
 import { Patient } from '../../../model/patient';
 import { Appointment } from '../../../model/appointment';
-import { AppointmentService } from '../../../service/appointment/appointment.service';
 
 
 const NAMES: string[] = [
@@ -33,11 +32,11 @@ export class PatientDashboardComponent implements OnInit{
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public dialog: MatDialog,patientService:PatientService,appointmentService:AppointmentService) {
+  constructor(public dialog: MatDialog,patientService:PatientService) {
 
     console.log(sessionStorage.getItem('patientName'))
     this.pattient_id=sessionStorage.getItem('patient_id');
-    appointmentService.getPatientAppointments(this.pattient_id).subscribe(
+    patientService.getPatientAppointments(this.pattient_id).subscribe(
       (data)=>{this.appointments=data, console.log(data,this.pattient_id),
         this.dataSource=new MatTableDataSource(this.appointments),console.log();
       },

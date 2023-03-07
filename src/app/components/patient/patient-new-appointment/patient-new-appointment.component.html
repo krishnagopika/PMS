@@ -13,7 +13,7 @@
           
             <mat-form-field class="ui-half1-width">
                 <mat-label>Date</mat-label>
-                <input matInput [matDatepicker]="picker" [(ngModel)]="appointmentDate" formControlName="date" required>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="appointmentDate" formControlName="date" (dateInput)="searchDoctors(date)"  (onInput)="searchDoctors(date)" required>
              
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
                 <mat-datepicker #picker></mat-datepicker>
@@ -25,7 +25,7 @@
                 <mat-label>Doctor</mat-label>
                 <mat-select [(ngModel)]="appointment.physicianEmail" formControlName="doctorname" name="dname" required>
                     <mat-option *ngFor="let dname of dname" [value]="dname">
-                      {{dname}}
+                      {{dname|titlecase}}
                     </mat-option>            
                   </mat-select>            
               </mat-form-field>

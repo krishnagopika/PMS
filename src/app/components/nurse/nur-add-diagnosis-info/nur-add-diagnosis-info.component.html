@@ -11,16 +11,18 @@
         <br>
         <div id="div1" class="label"><p><strong>Name: </strong><span class="text">{{patient?.title}} {{patient?.firstName}} {{patient?.lastName}}</span></p></div>
         <div id="div3"><p>&nbsp;</p></div>
-        <div id="blood_group" class="label" *ngIf="recorded"><p> <strong>Blood Group:</strong> <span class="text">  {{visitDetailsRecorded.blood_group}}</span></p></div>
-        <div id="div2" class="label" *ngIf="!recorded"><p> <strong>Blood Group:</strong> <input class="text" [(ngModel)]="blood_group"></p></div>
+        <div id="blood_group" class="label" *ngIf="check"><p> <strong>Blood Group:</strong> <span class="text"> {{visitdetails.blood_group}}</span></p></div>
+        <div id="div2" class="label" *ngIf="!check"><p> <strong>Blood Group:</strong> <input class="text" [(ngModel)]="blood_group"></p></div>
         <div id="div1" class="label"><p> <strong>Age:</strong><span class="text"> {{age}}</span></p></div>
-      <div id="div2" class="label" *ngIf="!check"><p> <strong>Last consultation on:</strong><span class="text"> {{visitdetails.date}}</span></p></div>
+        
+      <div id="div2" class="label" *ngIf="check"><p> <strong>Last consultation on:</strong><span class="text"> {{visitdetails.date|date:'dd-MMM-YYYY'}}</span></p></div>
         <div id="div3"><p>&nbsp;</p></div>
         <div id="div1" class="label"><p><strong>Gender: </strong><span class="text">{{patient?.gender}}</span></p></div>
-        <div id="div2" class="label" *ngIf="!check"><p> <strong>Last consultation with:</strong><span class="text">{{visitdetails.physician_email}}</span></p></div>
+        <div id="div2" class="label" *ngIf="check"><p> <strong>Last consultation with:</strong><span class="text">{{visitdetails.physician_email}}</span></p></div>
         <div id="div3"><p>&nbsp;</p></div>
         <div id="div1"  class="label"><p><strong>Contact number:</strong> <span class="text">{{patient?.contactNumber}}</span></p></div>
-        <div id="div2"  class="label" *ngIf="!check"><p><strong >Key Notes on Previous consultation:</strong><span class="text">{{visitdetails.key_notes}}</span></p></div>
+        <div id="div1" class="label" *ngIf="check"><p> <strong>Allergy:</strong><span class="text" *ngFor="let allergy of allergyDisplay"><br>{{allergy.name}}</span></p></div>
+        <div id="div2"  class="label" *ngIf="check"><p><strong >Key Notes on Previous consultation:</strong><span class="text">{{visitdetails.key_notes}}</span></p></div>
 <br>
         <div  *ngIf="recorded">
           <div class="visit-details" id="weight"><b>Weight: </b>{{visitDetailsRecorded.weight}}</div>
@@ -28,7 +30,6 @@
           <div class="visit-details"><b>Body Temperature: </b>{{visitDetailsRecorded.body_temperature}}</div>
           <div class="visit-details"><b>Respiration rate: </b>{{visitDetailsRecorded.respiration_rate}}</div>
           <div class="visit-details"><b>Blood Pressure:</b> {{visitDetailsRecorded.blood_pressure_systolic}}/{{visitDetailsRecorded.blood_pressure_diastolic}}</div>
-          <div class="visit-details"><b>Allergies: </b></div>
 
   
         </div>

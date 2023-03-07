@@ -5,8 +5,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Appointment } from '../../../model/appointment';
-import { AppointmentService } from '../../../service/appointment/appointment.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NurseService } from 'src/app/service/nurse/nurse.service';
 
 
 
@@ -29,9 +29,9 @@ export class NurDashboardComponent implements OnInit{
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public dialog: MatDialog, appointmentService:AppointmentService) {
+  constructor(public dialog: MatDialog, nurseService:NurseService) {
     console.log(this.currentDate.toDateString());
-    appointmentService.getAcceptedAppointments(this.acceptance,this.currentDate).subscribe(
+    nurseService.getAcceptedAppointments(this.acceptance,this.currentDate).subscribe(
       (data)=>{this.appointments=data, console.log(data),
         this.dataSource=new MatTableDataSource(this.appointments),console.log(this.currentDate);
       },

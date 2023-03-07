@@ -2,7 +2,6 @@ import { Component, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NurAddDiagnosisInfoComponent } from '../../nurse/nur-add-diagnosis-info/nur-add-diagnosis-info.component';
-import { AppointmentService } from '../../../service/appointment/appointment.service';
 import { Appointment } from '../../../model/appointment';
 import { PatientService } from 'src/app/service/patient/patient.service';
 import { PhysicianAvailability } from 'src/app/model/physician-availability';
@@ -43,7 +42,7 @@ export class PatientNewAppointmentComponent {
     for(let email of this.AvaialblePhysicians){
       const one = email.split("@");
       const two = one[0].split(".");
-      const name ="Dr."+ two[0] +" "+two[1] +"("+two[2]+")";
+      const name ="Dr "+ two[0] +" "+two[1] +"( "+two[2]+" )";
       this.dname.push(name);
       console.log(this.dname)
 
@@ -53,6 +52,28 @@ export class PatientNewAppointmentComponent {
     
     console.log(this.appointment)
 
+  }
+  searchDoctors(date:Date){
+    console.log(date)
+
+    for(let physicianAvailability of this.AllPhysicianAvailabilities)
+    {
+      console.log(physicianAvailability.date)
+      console.log(this.appointmentDate.toDateString())
+      if(physicianAvailability.date.includes(this.appointmentDate.toDateString())){
+        this.AvaialblePhysicians.push(physicianAvailability.email);
+        console.log(physicianAvailability.email)
+      }
+       
+    }
+    for(let email of this.AvaialblePhysicians){
+      const one = email.split("@");
+      const two = one[0].split(".");
+      const name ="Dr "+ two[0] +" "+two[1] +"( "+two[2]+" )";
+      this.dname.push(name);
+      console.log(this.dname)
+
+    }
   }
   form!: FormGroup;
   title!: string;
@@ -68,7 +89,25 @@ export class PatientNewAppointmentComponent {
 
       dialogRef.disableClose = true;
       this.patientService.getAllPhysicianAvailabilities().subscribe(
-        (data)=>{this.AllPhysicianAvailabilities=data,(console.log(data));},
+        (data)=>{this.AllPhysicianAvailabilities=data,(console.log(data))
+          for(let physicianAvailability of this.AllPhysicianAvailabilities)
+          {
+            console.log(physicianAvailability.date)
+            console.log(this.appointmentDate.toDateString())
+            if(physicianAvailability.date.includes(this.appointmentDate.toDateString())){
+              this.AvaialblePhysicians.push(physicianAvailability.email);
+              console.log(physicianAvailability.email)
+            }
+             
+          }
+          for(let email of this.AvaialblePhysicians){
+            const one = email.split("@");
+            const two = one[0].split(".");
+            const name ="Dr "+ two[0] +" "+two[1] +"( "+two[2]+" )";
+            this.dname.push(name);
+            console.log(this.dname)
+      
+          };},
         err=>{
           console.log(console.log(err.message))
 

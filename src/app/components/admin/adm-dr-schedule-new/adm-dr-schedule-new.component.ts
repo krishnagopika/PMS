@@ -47,7 +47,7 @@ export class AdmDrScheduleNewComponent {
   
   daySelected(date: Date | null,calendar: any) {
     if (date) {
-      let dateSelected = this.getDateOnly(date)
+      let dateSelected = date.toDateString();
       let i = this.selectedDates.indexOf(dateSelected)
       if (i >= 0) {
         this.selectedDates.splice(i,1)

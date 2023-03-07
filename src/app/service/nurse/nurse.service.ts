@@ -2,6 +2,8 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Allergy } from 'src/app/model/allergy';
+import { Appointment } from 'src/app/model/appointment';
+import { HealthRecord } from 'src/app/model/health-record';
 import { Patient } from 'src/app/model/patient';
 import { VisitDetails } from 'src/app/model/visit-details';
 
@@ -31,9 +33,9 @@ export class NurseService {
   }
   public getRecentVisitDetails(patient_id:number):Observable <any>{
     const params = new HttpParams()
-   .set('appointment_id', patient_id);
+   .set('patient_id', patient_id);
     
-    return this.http.get<VisitDetails>('http://localhost:8089/api/health-record/', {params});
+    return this.http.get<VisitDetails>('http://localhost:8089/api/health-record', {params});
     
   }
   public createVisitDetails(visitdetails:VisitDetails):Observable <any>{
@@ -41,4 +43,18 @@ export class NurseService {
     return this.http.post('http://localhost:8089/api/health-record', visitdetails);
     
   }
+
+  public getPatientHealthRecords(patient_id:number):Observable <any>{
+    const params = new HttpParams()
+   .set('patient_id', patient_id);
+    
+    return this.http.get<HealthRecord[]>('http://localhost:8089/api/health-records', {params});
+    
+  }
+  public getAcceptedAppointments(acceptance:string,date:Date):Observable <any>{
+     const params = new HttpParams()
+     .set('acceptance', acceptance)
+     .set('date', date.toDateString());
+     return this.http.get<Appointment[]>('http://localhost:8089/api/appointments/',{params});
+    }
 }
