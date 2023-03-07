@@ -1,0 +1,47 @@
+
+
+.header-image{
+    background-size: cover;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}
+.card{
+    width: 70%;
+    height: 300%;
+    margin-top: 2%;
+    padding: 1%;
+}
+.main-div{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.label{
+   width: 30%;
+    font-size: medium;
+    float: left;
+    margin-left: -13%;
+}
+.details{
+    width: 60%;
+    font-size: medium;
+    float: right;
+    margin-right: 13%;
+    
+    
+}
+#profile{
+    margin-left: 10%;
+}
+#user-details{
+    margin-left: 35%;
+}
+#user-header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

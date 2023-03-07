@@ -1,0 +1,8 @@
+#left {
+  float: left;
+}
+
+#right {
+  position: absolute;
+  right: 0px;
+}

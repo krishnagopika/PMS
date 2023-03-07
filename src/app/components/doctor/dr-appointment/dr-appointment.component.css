@@ -1,0 +1,46 @@
+.mat-column-notes {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 17% !important;
+    width: 57% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+    /* text-align: center; */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+
+  .mat-column-name {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 17% !important;
+    width: 10% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+    /* text-align: center; */
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+  }
+  .child {
+  width: 30%;
+  display: inline-block;
+  margin-right: -15%;
+
+}
+.card{
+padding: 1%;
+}
+.select-date{
+  margin-left: 1%;
+}
+#appointment-date{
+  color: black;
+}

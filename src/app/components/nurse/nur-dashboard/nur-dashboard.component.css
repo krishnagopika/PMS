@@ -1,0 +1,61 @@
+.mat-card-content {
+    color: #3f51b5;
+}
+.mat-card :hover {
+  
+    transform: scale(1.03);
+} 
+table {
+    width: 100%;
+}
+.mat-form-field {
+    font-size: 14px;
+    width: 100%;
+}
+.mat-column-booked {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 17% !important;
+    width: 17% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+.mat-column-name {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 17% !important;
+    width: 17% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+
+.mat-column-action {
+    word-wrap: break-word !important;
+    white-space: unset !important;
+    flex: 0 0 17% !important;
+    width: 17% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+  
+    word-break: break-word;
+  
+    -ms-hyphens: auto;
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+}
+

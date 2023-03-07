@@ -1,0 +1,42 @@
+<app-postlogin-toolbar-patient></app-postlogin-toolbar-patient>
+<div class="main-div">
+<mat-card class="card" >
+    
+    <mat-card-title mat-dialog-actions align="center">Profile</mat-card-title>
+    
+    <mat-card-header id="user-header">
+        <div mat-card-avatar  mat-dialog-actions align="center">
+            <img src="assets/images/UserDefaultProfilePhoto.png" class = "header-image">
+        </div>
+        <mat-card-subtitle >{{patient?.title}} {{patient?.firstName}} {{patient?.lastName}}</mat-card-subtitle>
+        <mat-card-subtitle >{{patient?.email}}</mat-card-subtitle>
+    </mat-card-header>
+     
+    <br>
+    <div id="user-details">
+   
+    <mat-card-content>
+        <label class="label" mat-dialog-actions ><b>Title</b></label><span class="details">: {{patient?.title}}</span><br>
+    </mat-card-content>
+    <mat-card-content>
+    <label class="label"><b>First Name</b></label><span class="details">: {{patient?.firstName}}</span><br>
+    </mat-card-content>
+    <mat-card-content>
+        <label class="label"><b>Last Name</b></label><span class="details">: {{patient?.lastName}}</span><br>
+        </mat-card-content>
+    <mat-card-content>
+        <label class="label"><b>Contact Number</b></label><span class="details">: {{patient?.contactNumber}}</span><br>
+    </mat-card-content>
+<mat-card-content>
+        <label class="label"><b>DOB</b></label><span class="details">: {{patient?.dob|date:'dd-MMM-yyyy'}}</span><br>
+    </mat-card-content>
+<mat-card-content>
+        <label class="label"><b>Gender</b></label><span class="details">: {{patient?.gender}}</span><br>
+    </mat-card-content>
+<mat-card-content>
+        <label class="label"><b>Address</b></label><span class="details">: {{patient?.address}}</span><br>
+    </mat-card-content>
+    
+</div>
+</mat-card>
+</div>

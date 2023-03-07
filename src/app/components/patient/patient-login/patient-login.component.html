@@ -1,0 +1,41 @@
+<app-prelogin-toolbar></app-prelogin-toolbar>
+<div class="content" role="main">
+<mat-card>
+  <form class="ui-login-form">
+    <mat-card-header>
+      <mat-card-title>Patient Login</mat-card-title>
+      <mat-card-subtitle>For already registered patients</mat-card-subtitle>
+    </mat-card-header>
+    <br/>
+    <mat-card-content>
+      <mat-card-subtitle id="login-failure" *ngIf="login">{{message}}</mat-card-subtitle>
+      <mat-form-field class="ui-full-width">
+        
+        <mat-label>Email</mat-label>
+        <input matInput [(ngModel)]="patientLogin.email" type="email" matInput [errorStateMatcher]="matcher"
+               placeholder="Ex. itsme@mail.com" [formControl]="emailFormControl">
+        <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          Please enter a valid email address
+        </mat-error>
+        <mat-error *ngIf="emailFormControl.hasError('required')">
+          Email is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="ui-full-width">
+        <mat-label>Password</mat-label>
+        <input  matInput [(ngModel)]="patientLogin.password" type="password" matInput [errorStateMatcher]="matcher"
+               placeholder="*******" [formControl]="passwordFormControl">
+        <mat-error *ngIf="passwordFormControl.hasError('required')">
+          Password is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+      
+      <a (click)="openDialog()" [routerLink]="['/']" id="forgotpassword">  Forgot password? </a>
+    <mat-card-actions>
+      <button mat-raised-button color="primary"  (click)="loginPatient(patientLogin)" >Login</button>&nbsp;
+      <span>New user? Register <a routerLink="/register">here</a></span>
+    </mat-card-actions>
+    </mat-card-content>
+  </form>
+</mat-card>
+</div>

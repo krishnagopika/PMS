@@ -1,0 +1,12 @@
+.ui-registration-form {
+  min-width: 250px;
+  max-width: 600px;
+  width: 100%;
+}
+
+#error-message{
+  color: red;
+}
+#success-message{
+  color:blue
+}

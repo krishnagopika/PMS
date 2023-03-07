@@ -1,0 +1,18 @@
+<app-postlogin-toolbar></app-postlogin-toolbar>
+  <mat-card class="card">
+    <div *ngIf="auth.user$ | async as user">
+    <img  [src]=" user.picture" alt="users profile picture" id= "profile-picture"> 
+    <h4 class="label"><b>Email:  </b><span class="details">{{user.email}}</span></h4>
+    <h4 class="label"><b>Name:   </b><span class="details">{{user.name}}</span></h4>
+    <h4 class="label"><b>Role:   </b><span class="details">{{user['role']}}</span></h4>
+
+   </div>
+    </mat-card>       
+          
+        
+          
+      
+   
+    
+    
+    

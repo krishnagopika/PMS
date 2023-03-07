@@ -1,0 +1,132 @@
+#div1{
+    margin-left: 25%;
+    width: 23.3%;
+    float: left;
+    margin-left: 5%;;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+}
+#div2{
+    margin-left: 35%;
+    width: 33.3%;
+    float: right;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+}
+#div3{
+    margin-left: 35%;
+    width: 53.3%;
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+}
+#div4 {
+    margin-left: 35%;
+    word-wrap: break-word !important;
+    width: 20% !important;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    width: 33.3%;
+    margin: 0 auto;
+    word-break: break-word;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: justify;
+}
+
+#div12 {
+    width: 23.3%;
+    float: left;
+    display: flex;
+    align-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.view-medication-history{
+    width: 50%;
+    float:right;  
+    margin-right: -30%;
+}
+#subtitle{
+    font-family:   Arial, Helvetica, sans-serif;
+};
+.card{
+    padding: 2%;
+    margin: 2%;
+}
+
+.label1{
+    width: 70%;
+     font-size: small;
+     font-family: Arial, Helvetica, sans-serif;
+     float: left;
+     margin-left: -23%;
+ }
+ .details1{
+     width: 40%;
+     font-size: small;
+     font-family: Arial, Helvetica, sans-serif;
+     float: right;
+     margin-right: 13%; 
+ }
+
+ .label2{
+    width: 70%;
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+     float: left;
+     margin-left: -23%;
+ }
+ .details2{
+     width: 40%;
+     font-size: small;
+     font-family: Arial, Helvetica, sans-serif;
+     float: right;
+     margin-right: 13%; 
+ }
+
+ .label{
+    width: 30%;
+    font-size: small;
+    font-family: Arial, Helvetica, sans-serif;
+     float: left;
+     margin-left: -23%;
+ }
+ .details{
+     width: 70%;
+     font-size: small;
+     font-family: Arial, Helvetica, sans-serif;
+     float: right;
+     margin-right: 13%; 
+ }
+
+
+ #profile{
+     margin-left: 10%;
+ }
+ #user-details{
+     margin-left: 35%;
+     
+ }
+
+ .container {
+    width: 90%;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+    margin: 1%;
+    margin-left: 3%;
+  }
+
+  .item1 {
+    width: 33.3%;
+    padding: 2%;
+
+  }
+  .item2 {
+    width: 53.3%;
+    padding: 2%;
+
+  }
+
+  .item3 {
+    width: 33.3%;
+    padding: 2%;
+  }

@@ -1,0 +1,12 @@
+<div class="toolbar" role="banner">
+  <span class="material-symbols-outlined">stethoscope</span>&nbsp;
+  <span style="font-size: 20px; font-weight: bold; color: lightyellow">Practice Management System</span>
+  <div class="spacer"></div>
+  <nav>
+    <a routerLink="/login" title="Patient's Login" href="#"><span class="material-symbols-outlined">login</span></a>
+    <a routerLink="/register" title="Patient's Registration"><span
+      class="material-symbols-outlined">app_registration</span></a>
+    <a (click)="auth.loginWithRedirect({ appState: { target: '/dashboard' }})" title="Admin|Doctor|Nurse Login" style="cursor: pointer"><span
+      class="material-symbols-outlined">manage_accounts</span></a>
+  </nav>
+</div>

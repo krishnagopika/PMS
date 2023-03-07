@@ -1,0 +1,21 @@
+
+.card{
+    width: 70%;
+    height: 50%;
+    margin-left: 15%;
+    margin-right: 15%;
+    margin-top: 2%;
+    padding: 1%;
+    align-items: center;
+}
+
+#profile-picture{
+    background-size: cover;
+    border-radius: 50%;
+    height: 100px;
+    width: 100px;
+    padding: 10%;
+    border-radius: 50%;
+    flex-shrink: 0;
+    object-fit: cover;
+}

@@ -1,0 +1,46 @@
+<h2 mat-dialog-title> Observations found </h2>
+
+<mat-divider></mat-divider>
+<mat-dialog-content [formGroup] = "form" >
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <h3 mat-dialog-subtitle> Verified with test generated report</h3>
+        
+            <!-- <h4> <strong>Test Conducte: &nbsp;</strong></h4> -->
+            <mat-form-field class="ui-full-width">  
+                <mat-label>Test Conducted</mat-label>
+                <input matInput placeholder="" formControlName="testConducted" required>
+                <mat-error *ngIf="form.get('testConducted')?.invalid || form.get('testConducted')?.dirty || form.get('testConducted')?.touched"><strong>Test Conducted is required</strong></mat-error>
+              </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+            <!-- <h4> <strong>Expected Result: &nbsp;</strong></h4> -->
+
+      
+
+        <div id="div1">
+            <!-- <h4> <strong>Status: &nbsp;</strong></h4> -->
+            <mat-form-field  class="ui-full-width">  
+                <mat-label>Status</mat-label>
+                <input matInput placeholder="" formControlName="status" required>
+                <mat-error *ngIf="form.get('status')?.invalid || form.get('status')?.dirty || form.get('status')?.touched"><strong>Status is required</strong></mat-error>
+              </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
+            <!-- <h4> <strong>Actual Result: &nbsp;</strong></h4> -->
+            <mat-form-field class="ui-full-width">  
+                <mat-label>Actual Result</mat-label>
+                <input matInput placeholder="" formControlName="actualResult" required>
+                <mat-error *ngIf="form.get('actualResult')?.invalid || form.get('actualResult')?.dirty || form.get('actualResult')?.touched"><strong>Actual Result is required</strong></mat-error>
+              </mat-form-field>
+        </div>
+
+        <div id="div1">
+            <!-- <h4> <strong>Remarks: &nbsp;</strong></h4> -->
+            <mat-form-field class="ui-full-width">  
+                <mat-label>Remarks</mat-label>
+                <input matInput placeholder="" formControlName="remarks">
+                <mat-error *ngIf="form.get('remarks')?.invalid || form.get('remarks')?.dirty || form.get('remarks')?.touched"></mat-error>
+              </mat-form-field>
+        </div>
+    </mat-grid-list>
+</mat-dialog-content>
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" mat-dialog-close (click)="saveinfo()">Save</button>
+            <button mat-raised-button  mat-dialog-close (click)="resetinfo()" >Cancel</button>
+          </div>

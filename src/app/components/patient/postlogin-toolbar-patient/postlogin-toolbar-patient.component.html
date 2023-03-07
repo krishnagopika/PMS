@@ -1,0 +1,29 @@
+<div class="toolbar" role="banner">
+    <mat-toolbar color="primary" class="mat-elevation-z3">
+      <mat-toolbar-row>
+        <!--        <span id="left">Review</span>-->
+        <span class="material-symbols-outlined">stethoscope</span>&nbsp;
+        <span style="font-size: 20px; font-weight: bold; color: lightyellow">Practice Management System</span>
+        <div class="spacer"></div>
+        <div id="right" >
+          <a mat-button [routerLink]="['/patient-dashboard']">Dashboard</a>
+          <a mat-button [routerLink]="['/patient-health-info']" >Health Info</a>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+        </div>
+        
+        <mat-menu #menu="matMenu">
+          <a [routerLink]="['/patient-profile']" mat-menu-item>
+            <mat-icon>person</mat-icon>
+            <span>Profile</span>
+          </a>
+          <a [routerLink]="['']" mat-menu-item>
+            <mat-icon>logout</mat-icon>
+            <span>Log Out</span>
+          </a>
+        </mat-menu>
+      </mat-toolbar-row>
+    </mat-toolbar>
+  </div>
+  

@@ -1,0 +1,45 @@
+<div id="dialog-box">
+  <br *ngIf="success">
+  <br *ngIf="success">
+<h2 mat-dialog-title *ngIf="!success"> Book a doctor's appointment </h2>
+<mat-card-title id="success" *ngIf="success">{{message}}</mat-card-title>
+<br *ngIf="success">
+<br *ngIf="success">
+<mat-divider></mat-divider>
+<mat-dialog-content [formGroup] = "form" *ngIf="!success" >
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <div>
+          <mat-card-title id="error" *ngIf="submit">{{message}}</mat-card-title>
+          
+            <mat-form-field class="ui-half1-width">
+                <mat-label>Date</mat-label>
+                <input matInput [matDatepicker]="picker" [(ngModel)]="appointmentDate" formControlName="date" required>
+             
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <mat-error *ngIf="form.get('date')?.invalid || form.get('date')?.dirty || form.get('date')?.touched"><strong>Date is required</strong>
+                </mat-error>
+              </mat-form-field>
+              &nbsp;&nbsp;
+            <mat-form-field class="ui-half1-width">  
+                <mat-label>Doctor</mat-label>
+                <mat-select [(ngModel)]="appointment.physicianEmail" formControlName="doctorname" name="dname" required>
+                    <mat-option *ngFor="let dname of dname" [value]="dname">
+                      {{dname}}
+                    </mat-option>            
+                  </mat-select>            
+              </mat-form-field>
+            </div>
+        <div>
+              <mat-form-field class="ui-full-width">
+                <mat-label>Notes</mat-label>
+                <textarea matInput [(ngModel)]="appointment.reason" formControlName="notes"></textarea>
+              </mat-form-field>
+        </div>
+    </mat-grid-list>
+</mat-dialog-content>
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" *ngIf="!success" (click)="saveinfo()">Book</button>
+            <button mat-raised-button  mat-dialog-close (click)="resetinfo()" >Cancel</button>
+        </div>
+</div>

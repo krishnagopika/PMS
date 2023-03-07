@@ -1,0 +1,13 @@
+.h4{
+    display: inline-block;
+}
+
+.button{
+    display: inline-block;
+}
+.container{
+    padding: 25px;
+}
+#new-appointment{
+    margin-right: 15px;
+}

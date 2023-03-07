@@ -1,0 +1,19 @@
+<h2 mat-dialog-title> New Schedule for Doctor Availability </h2>
+<mat-divider></mat-divider>
+<mat-dialog-content  FormControl >
+    <mat-grid-list cols="2" rowHeight="2:1">
+        <div>
+          <mat-form-field class="ui-full-width"><mat-label>Doctor Email</mat-label><input matInput [(ngModel)]="email" [formControl]="emailFormControl"> <mat-error *ngIf="emailFormControl.hasError('required')">Doctor Email is <strong>required</strong></mat-error> </mat-form-field>
+        </div>
+        <div class="card habit-tracker mb-3">
+          <mat-calendar 
+          #calendar 
+          (selectedChange)="daySelected($event,calendar)" 
+          [dateClass]="dateClass"></mat-calendar>
+      </div>
+    </mat-grid-list>
+</mat-dialog-content>
+        <div mat-dialog-actions align="end">
+            <button mat-raised-button color="primary" mat-dialog-close (click)="saveinfo()">Save</button>
+            <button mat-raised-button  mat-dialog-close (click)="resetinfo()" >Cancel</button>
+          </div>

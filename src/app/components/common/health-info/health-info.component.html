@@ -1,0 +1,201 @@
+<app-postlogin-toolbar></app-postlogin-toolbar>
+<div >
+
+    
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Patient Health Information</mat-card-title>
+      
+  </mat-card-header>
+  <mat-divider></mat-divider>
+  <mat-card-content>
+      <br>
+      <div class="container">
+        <div id="item1">
+       <mat-card-content>
+        <label class="label"><b>Name</b></label><span class="details">: Mr.Romeo</span><br>
+    </mat-card-content>
+    <mat-card-content>
+    <label class="label"><b>Age</b></label><span class="details">: 32</span><br>
+    </mat-card-content>
+    </div>
+    <div id="item2" >
+<mat-card-content>
+        <label class="label2"><b>Blood Group</b></label><span class="details2">: B +ve</span><br>
+    </mat-card-content>
+<mat-card-content>
+        <label class="label2"><b>Gender</b></label><span class="details2">: Male</span><br>
+    </mat-card-content>
+</div>
+<div id="item3">
+  <mat-card-content>
+    <label class="label2"><b>Last consultation on</b></label><span class="details2">: 27-Jan-2023</span><br>
+  </mat-card-content>
+<mat-card-content>
+  <label class="label2"><b>Last consultation with</b></label><span class="details2">: Dr.Hawking</span><br>
+</mat-card-content>
+
+        </div>
+      </div>
+      <!-- <div id="div1"><label class="label"><b>Name: </b></label><span class="text">Dr Hawking</span><br></div>
+      <div id="div2"><label class="label"><b>Last consultation on: </b></label><span class="text">27-Jan-2023</span><br></div>
+      <div id="div3"><label class="label"><b>Gender: </b></label><span class="text">Male</span><br></div>
+      <div id="div1"><label class="label"><b>Age:</b></label><span class="text"> 32</span><br></div>
+      <div id="div2"><label class="label"><b>Last consultation with:</b></label><span class="text"> Dr. Andrew</span><br></div>
+      <div id="div3"><label class="label"><b>Blood Group:</b></label> <span class="text">B +ve</span><br></div> -->
+
+
+  </mat-card-content>
+      <mat-card-header>
+          <mat-card-title>Visit History</mat-card-title>
+        
+      </mat-card-header>
+      <mat-card-content>
+          <br>
+
+          
+   
+      </mat-card-content>
+      <mat-card class="observations">
+  <mat-card-content>
+    
+    <mat-card-title id="subtitle">Observations Made </mat-card-title>
+    <mat-card-subtitle>Dr. Andrew on 27-Jan-2023</mat-card-subtitle>
+  <mat-card-subtitle><b>Key Notes: </b></mat-card-subtitle>
+    <mat-card-subtitle>Arthritis is a common condition that causes pain and inflammation in a joint.</mat-card-subtitle>          
+              <mat-card-content  align = "end">
+                <a mat-raised-button color="primary" (click)="openDialog2()">View Prescription</a>
+              </mat-card-content>
+              <br>
+          <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+                  <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+                <ng-container matColumnDef="testConducted">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Test Conducted</th>
+                  <td mat-cell *matCellDef="let row"> {{row.testConducted}}</td>
+                </ng-container>
+                <!-- <ng-container matColumnDef="expectedResult">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Expected Result</th>
+                  <td mat-cell *matCellDef="let row"> {{row.expectedResult}} </td>
+                </ng-container> -->
+                <ng-container matColumnDef="actualResult">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Actual Result</th>
+                  <td mat-cell *matCellDef="let row"> {{row.actualResult}} </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                  <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+                </ng-container>
+                <ng-container matColumnDef="remarks">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
+                  <td mat-cell *matCellDef="let row"> {{row.remarks}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+              </table>
+              <!-- <mat-paginator [pageSizeOptions]="[4, 8, 12, 16]" aria-label="Select page of users"></mat-paginator> -->
+            </div>
+      </mat-card-content>
+    </mat-card>
+
+  <br>
+    <mat-card class="observations">
+  <mat-card-content>
+    
+    <mat-card-title id="subtitle">Observations Made </mat-card-title>
+    <mat-card-subtitle>Dr. Spencer on 20-Jan-2023</mat-card-subtitle>
+  <mat-card-subtitle><b>Key Notes: </b></mat-card-subtitle>
+    <mat-card-subtitle>Anemia caused by poor dietary habits</mat-card-subtitle>
+
+         
+              <mat-card-content  align = "end">
+                <a mat-raised-button color="primary" (click)="openDialog2()">View Prescription</a>
+              </mat-card-content>
+              <br>
+          <div class="mat-elevation-z8">
+              <table mat-table [dataSource]="dataSource" matSort>
+                <ng-container matColumnDef="id">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+                  <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                </ng-container>
+                <ng-container matColumnDef="testConducted">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Test Conducted</th>
+                  <td mat-cell *matCellDef="let row"> {{row.testConducted}}</td>
+                </ng-container>
+                <!-- <ng-container matColumnDef="expectedResult">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Expected Result</th>
+                  <td mat-cell *matCellDef="let row"> {{row.expectedResult}} </td>
+                </ng-container> -->
+                <ng-container matColumnDef="actualResult">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Actual Result</th>
+                  <td mat-cell *matCellDef="let row"> {{row.actualResult}} </td>
+                </ng-container>
+                <ng-container matColumnDef="status">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                  <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+                </ng-container>
+                <ng-container matColumnDef="remarks">
+                  <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
+                  <td mat-cell *matCellDef="let row"> {{row.remarks}} </td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+              </table>
+              <!-- <mat-paginator [pageSizeOptions]="[4, 8, 12, 16]" aria-label="Select page of users"></mat-paginator> -->
+            </div>
+      </mat-card-content>
+      
+    
+    </mat-card>
+    <br>
+    
+
+    <mat-card class="observations">
+      <mat-card-content>
+        
+        <mat-card-title id="subtitle">Observations Made </mat-card-title>
+        <mat-card-subtitle>Dr.Clinton on 1-Dec-2022</mat-card-subtitle>
+      <mat-card-subtitle><b>Key Notes: </b></mat-card-subtitle>
+        <mat-card-subtitle>Fever, Cough and common cold with sore throat.</mat-card-subtitle>
+  
+             
+                  <mat-card-content  align = "end">
+                    <a mat-raised-button color="primary" (click)="openDialog2()">View Prescription</a>
+                  </mat-card-content>
+                  <br>
+              <div class="mat-elevation-z8">
+                  <table mat-table [dataSource]="dataSource" matSort>
+                    <ng-container matColumnDef="id">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+                      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="testConducted">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Test Conducted</th>
+                      <td mat-cell *matCellDef="let row"> {{row.testConducted}}</td>
+                    </ng-container>
+                    <!-- <ng-container matColumnDef="expectedResult">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Expected Result</th>
+                      <td mat-cell *matCellDef="let row"> {{row.expectedResult}} </td>
+                    </ng-container> -->
+                    <ng-container matColumnDef="actualResult">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Actual Result</th>
+                      <td mat-cell *matCellDef="let row"> {{row.actualResult}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="status">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                      <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+                    </ng-container>
+                    <ng-container matColumnDef="remarks">
+                      <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
+                      <td mat-cell *matCellDef="let row"> {{row.remarks}} </td>
+                    </ng-container>
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+                  </table>
+                  <!-- <mat-paginator [pageSizeOptions]="[4, 8, 12, 16]" aria-label="Select page of users"></mat-paginator> -->
+                </div>
+          </mat-card-content>
+        </mat-card>

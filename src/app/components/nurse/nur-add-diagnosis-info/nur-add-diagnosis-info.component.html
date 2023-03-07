@@ -1,0 +1,87 @@
+<app-postlogin-toolbar></app-postlogin-toolbar>
+<div >
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Patient's Health Info</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div id="div33" align="end"><button mat-raised-button color="primary" style="width : 22em;" [routerLink]="['/health-info']">View Previous Medication History</button></div>
+    </mat-card-content>
+    <mat-card-content>
+        <br>
+        <div id="div1" class="label"><p><strong>Name: </strong><span class="text">{{patient?.title}} {{patient?.firstName}} {{patient?.lastName}}</span></p></div>
+        <div id="div3"><p>&nbsp;</p></div>
+        <div id="blood_group" class="label" *ngIf="recorded"><p> <strong>Blood Group:</strong> <span class="text">  {{visitDetailsRecorded.blood_group}}</span></p></div>
+        <div id="div2" class="label" *ngIf="!recorded"><p> <strong>Blood Group:</strong> <input class="text" [(ngModel)]="blood_group"></p></div>
+        <div id="div1" class="label"><p> <strong>Age:</strong><span class="text"> {{age}}</span></p></div>
+      <div id="div2" class="label" *ngIf="!check"><p> <strong>Last consultation on:</strong><span class="text"> {{visitdetails.date}}</span></p></div>
+        <div id="div3"><p>&nbsp;</p></div>
+        <div id="div1" class="label"><p><strong>Gender: </strong><span class="text">{{patient?.gender}}</span></p></div>
+        <div id="div2" class="label" *ngIf="!check"><p> <strong>Last consultation with:</strong><span class="text">{{visitdetails.physician_email}}</span></p></div>
+        <div id="div3"><p>&nbsp;</p></div>
+        <div id="div1"  class="label"><p><strong>Contact number:</strong> <span class="text">{{patient?.contactNumber}}</span></p></div>
+        <div id="div2"  class="label" *ngIf="!check"><p><strong >Key Notes on Previous consultation:</strong><span class="text">{{visitdetails.key_notes}}</span></p></div>
+<br>
+        <div  *ngIf="recorded">
+          <div class="visit-details" id="weight"><b>Weight: </b>{{visitDetailsRecorded.weight}}</div>
+          <div class="visit-details"><b>Height:</b> {{visitDetailsRecorded.height}}</div>
+          <div class="visit-details"><b>Body Temperature: </b>{{visitDetailsRecorded.body_temperature}}</div>
+          <div class="visit-details"><b>Respiration rate: </b>{{visitDetailsRecorded.respiration_rate}}</div>
+          <div class="visit-details"><b>Blood Pressure:</b> {{visitDetailsRecorded.blood_pressure_systolic}}/{{visitDetailsRecorded.blood_pressure_diastolic}}</div>
+          <div class="visit-details"><b>Allergies: </b></div>
+
+  
+        </div>
+        <div id="div3"><h4>&nbsp;</h4></div>
+        <div >
+          <button mat-raised-button  color="primary" [routerLink]="['/nur-dashboard']"class="buttons"  id ="close-recorded" *ngIf="recorded">Close</button>
+        </div>
+    </mat-card-content>
+</mat-card>
+<mat-card *ngIf="!recorded">
+<br>
+    <mat-card-content >
+      <h4> <strong> Add more information </strong></h4>
+        <mat-form-field class="fields">  
+          <mat-label>Body Temperature</mat-label>
+          <input matInput [(ngModel)]="visitDetailsResponse.body_temperature" placeholder="37 (in celsius)" [formControl]="bodyTempFormControl" required>
+          <mat-error *ngIf="bodyTempFormControl.hasError('required')"><strong>Body Temperature is required</strong></mat-error>
+        </mat-form-field>
+      
+      
+        <mat-form-field class="fields">  
+            <mat-label>Blood Pressure</mat-label>
+            <input matInput [(ngModel)]="blood_pressure" placeholder="1.5 (in mmHg)" [formControl]="bloodPressureFormControl" required>
+            <mat-error *ngIf="bloodPressureFormControl.hasError('required')"><strong>Blood Pressure is required</strong></mat-error>
+          </mat-form-field> 
+       
+        <mat-form-field class="fields">  
+            <mat-label>Height</mat-label>
+            <input matInput [(ngModel)]="visitDetailsResponse.height" placeholder="167 (in cm)" [formControl]="heightFormControl" required>
+            <mat-error *ngIf="heightFormControl.hasError('required')"><strong>Height is required</strong></mat-error>
+          </mat-form-field>
+         
+            
+        <mat-form-field class="fields">  
+            <mat-label>Weight</mat-label>
+            <input matInput [(ngModel)]="visitDetailsResponse.weight" placeholder="67 (in Kg)" [formControl]="weightFormControl" required>
+            <mat-error *ngIf="weightFormControl.hasError('required')"><strong>Weight is required</strong></mat-error>
+          </mat-form-field>
+          <mat-form-field class="fields">  
+            <mat-label>Respiration Rate</mat-label>
+            <input matInput [(ngModel)]="visitDetailsResponse.respiration_rate" placeholder="37 (in celsius)" [formControl]="bodyTempFormControl" required>
+            <mat-error *ngIf="respirationRateFormControl.hasError('required')"><strong>Respiration rate is required</strong></mat-error>
+          </mat-form-field>
+        
+         <mat-label id="allergies"><h4><strong>Allergies:</strong>&nbsp;&nbsp;<button mat-raised-button color="primary" (click)="openDialog1()">+</button></h4></mat-label> 
+      <br>
+      <br>
+      <br>
+      <div mat-dialog-actions align="end">
+        <button mat-raised-button color="primary" (click)="saveInfo()" class="buttons" id="footer" *ngIf="!recorded">Save</button> &nbsp;
+        <button mat-raised-button [routerLink]="['/nur-dashboard']" class="buttons" >Close</button>
+      </div><br><br><br><br><br><br><br><br>
+    </mat-card-content>
+</mat-card>
+
+   

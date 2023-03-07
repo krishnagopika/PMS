@@ -1,0 +1,87 @@
+.mat-dialog-content {
+    width: 600px;
+  }
+  
+.ui-half1-width{
+    width: 220px;
+}
+
+#div1{
+  width: 23.3%;
+  float: left;
+}
+
+#div2{
+  width: 23.3%;
+  margin-left: 6%;
+  float: right;
+}
+
+#div3{
+  width: 53.3%;
+  margin: 0 auto;
+}
+
+#div21{
+  width: 23.3%;
+  float: right;
+}
+
+#div12 {
+  width: 23.3%;
+  display: flex;
+  align-content: center;
+  margin-left: 3%;
+}
+.observations-made{
+  padding: 1%;
+}
+#view-prescription{
+  align-content: center; 
+}
+.fields{
+  margin-right: 2%;
+  width:15%
+}
+
+#allergies{
+  float:right;
+  padding: 1%;
+}
+.visit-details{
+  color: black;
+   font-family: Arial, Helvetica, sans-serif;
+   padding-bottom: 1%;
+}
+#weight{
+  margin-top: 1%;
+
+}
+
+mat-card{
+  padding: 1.5%;
+}
+
+.label{
+  font-family: Arial, Helvetica, sans-serif;
+}
+.text{
+   color: black;
+   font-family: Arial, Helvetica, sans-serif;
+}
+#subtitle{
+   font-size: medium;
+}
+
+.buttons{
+  margin-top: 2%;
+  width: 10%;
+  
+}
+#footer{
+  margin-left: 75%;
+}
+#close-recorded{
+  margin-left: 88%;
+}
+

@@ -1,0 +1,23 @@
+.main-div{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+.title_center {
+    display: flex;
+    justify-content: center; /* align horizontal */
+    align-items: center; /* align vertical */
+  }
+.mat-icon {
+    background-repeat: no-repeat;
+    display: inline-block;
+    fill: currentColor;
+    }
+
+.icon-display {
+        transform: scale(4);
+        height: 40px;
+        margin-top: 15%;
+     }

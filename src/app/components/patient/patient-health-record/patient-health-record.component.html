@@ -1,0 +1,164 @@
+<app-postlogin-toolbar></app-postlogin-toolbar>
+<div >
+  <mat-card class="card">
+
+    <mat-card-header>
+        <mat-card-title>Patient Health information</mat-card-title>
+      </mat-card-header>
+      
+        <mat-card-content mat-dialog-actions align="end">
+        <button mat-raised-button  color="primary" [routerLink]="['/health-info']" >View Previous Medication History</button>
+      </mat-card-content>
+   
+    
+    <!-- <mat-card-content>
+        <br> -->
+        <!-- <div id="div2"><p><strong>Blood Pressure: </strong>120/80</p></div>---------------------------------------
+        <div id="div1"><p><strong>Name: </strong>Mr.Romeo</p></div>-----------------------------------------
+        <div id="div4"><p> <strong>Blood Group: </strong>B +ve</p></div>   -------------------------------------- 
+        <div id="div2"><p><strong>Sugar: </strong>Nil</p></div>---------------------------------------
+        <div id="div1"><p> <strong>Age: </strong>32</p></div>------------------------------------------
+        <div id="div4"><p> <strong>Last consultation on: </strong>Dr. Andrew</p></div> ------------------
+        <div id="div2"><p> <strong>Allergies: </strong>Skin, Face</p></div>
+        <div id="div1"><p><strong>Gender: </strong>Male</p></div>-------------------------------------------
+        <div id="div4"><p> <strong>Last consultation with: </strong>Dr. Andrew</p></div>------------------------
+        <div id="div2" ><p> <strong>Height: </strong>167 cm</p> 
+            <p> <strong>Weight: </strong>67 Kg</p>
+            <p> <strong>Other notes to Doctor: </strong>Feeling stomach pain, headache and body fatigue. Severe throat pain while having food.</p>
+        </div>
+        <div id="div1"><p> <strong>Contact Number: </strong>0123456789</p><p> <strong>Address: </strong>Revature, 11730 Plaza America Dr. 2nd Floor Reston, VA 20190</p></div>
+        <div id="div4"><p><strong>Key Notes on Previous consultation: </strong>Good recovery. Food poisoning is an illness caused by eating contaminated food. It's not usually serious and most people get better within a few days without treatment.</p></div>  
+         -->
+         <div class="container">
+          <div id="item1">
+         <mat-card-content>
+          <label class="label"><b>Name</b></label><span class="details">: Mr.Romeo</span><br>
+      </mat-card-content>
+      <mat-card-content>
+      <label class="label"><b>Age</b></label><span class="details">: 32</span><br>
+      </mat-card-content>
+      <mat-card-content>
+          <label class="label"><b>Gender</b></label><span class="details">: Male</span><br>
+          </mat-card-content>
+          <mat-card-content>
+          <label class="label"><b>Contact</b></label><span class="details">: 0123456789</span><br>
+          </mat-card-content>
+          <mat-card-content>
+          <label class="label"><b>Address</b></label><span class="details">: Revature, Reston</span><br>
+      </mat-card-content>
+      </div>
+      <div id="item2" >
+  <mat-card-content>
+          <label class="label2"><b>Blood Group</b></label><span class="details2">: B +ve</span><br>
+      </mat-card-content>
+  <mat-card-content>
+          <label class="label2"><b>Last consultation on</b></label><span class="details2">: 27-Jan-2023</span><br>
+      </mat-card-content>
+  <mat-card-content>
+          <label class="label2"><b>Last consultation with</b></label><span class="details2">: Dr.Hawking</span><br>
+      </mat-card-content>
+      <mat-card-content>
+        <label class="label2"><b>Key Notes </b></label><span class="details2">: Good</span><br>
+    </mat-card-content>
+    <mat-card-content>
+      <label class="label2"><b>Blood Pressure</b></label><span class="details2">: 1.5 unit</span><br>
+  </mat-card-content>
+  </div>
+  <div id="item3">
+  <mat-card-content>
+    <label class="label1"><b>Sugar</b></label><span class="details1">: 1.75 unit</span><br>
+</mat-card-content>
+<mat-card-content>
+  <label class="label1"><b>Height</b></label><span class="details1">: 182 cm</span><br>
+</mat-card-content>
+<mat-card-content>
+  <label class="label1"><b>Weight</b></label><span class="details1">: 78 Kg</span><br>
+</mat-card-content>
+<mat-card-content>
+  <label class="label1"><b>Allergies</b></label><span class="details1">: Skin, Face</span><br>
+</mat-card-content>
+<mat-card-content>
+  <label class="label1"><b>Other notes to Doctor</b></label><span class="details1">: Severe pain</span><br>
+</mat-card-content>
+          </div>
+        </div>
+    <br>
+    <mat-card class="card">
+    <mat-card-content>
+            <h4 id="subtitle">  <strong>Observations Made</strong> </h4>
+            <div mat-dialog-actions align="end">
+                <button mat-raised-button color="primary" (click)="openDialog()">New Observation</button>
+              </div><br>
+            <div class="mat-elevation-z8">
+                <table mat-table [dataSource]="dataSource" matSort>
+                  <ng-container matColumnDef="id">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="testConducted">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Test Conducted</th>
+                    <td mat-cell *matCellDef="let row"> {{row.testConducted}}</td>
+                  </ng-container>
+                  <!-- <ng-container matColumnDef="expectedResult">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Expected Result</th>
+                    <td mat-cell *matCellDef="let row"> {{row.expectedResult}} </td>
+                  </ng-container> -->
+                  <ng-container matColumnDef="actualResult">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Actual Result</th>
+                    <td mat-cell *matCellDef="let row"> {{row.actualResult}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="status">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+                    <td mat-cell *matCellDef="let row"> {{row.status}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="remarks">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
+                    <td mat-cell *matCellDef="let row"> {{row.remarks}} </td>
+                  </ng-container>
+                  <ng-container matColumnDef="action">
+                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit/ Delete </th>
+                    <td mat-cell *matCellDef="let row"> <button mat-raised-button color="primary" (click)="openDialog()">Edit</button>&nbsp;&nbsp;
+                        <button mat-raised-button color="accent" (click)="closeDialog()">Delete</button>
+                    </td>
+                  </ng-container>
+                  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+                </table>
+                <!-- <mat-paginator [pageSizeOptions]="[4, 8, 12, 16]" aria-label="Select page of users"></mat-paginator> -->
+              </div>
+        </mat-card-content><br>
+        <mat-card-content>
+           
+        <div id="div12">
+            <b>Enter Prescription: </b>
+            <mat-card-content>
+              <a mat-raised-button  color="primary" (click)="openDialog1()">+</a>
+            </mat-card-content>
+            <b>View Prescription: </b>
+            <mat-card-content>
+              <a mat-raised-button  color="primary" (click)="openDialog2()">view</a>
+            </mat-card-content>
+          </div> 
+          <div id="div4">
+            <p><strong>Enter Key Notes: </strong></p>
+            <mat-form-field class="ui-full-width">  
+                <mat-label>Key Notes</mat-label>
+                <textarea matInput></textarea>
+            </mat-form-field>
+          </div>
+     
+          <div  align="end"><button mat-raised-button color="primary" [routerLink]="['/dr-dashboard']">Save</button>&nbsp;
+            <button mat-raised-button [routerLink]="['/dr-dashboard']">Cancel</button>
+        </div>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-card>
+  
+
+        
+
+
+       
+
+

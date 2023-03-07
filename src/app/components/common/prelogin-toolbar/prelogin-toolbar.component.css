@@ -1,0 +1,26 @@
+
+.spacer {
+  flex: 1;
+}
+
+.toolbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  background-color: #3F51B5;
+  color: white;
+  font-weight: 600;
+}
+
+
+.material-symbols-outlined {
+  color: white;
+  height: 16px;
+  width: 16px;
+  padding: 10px;
+}
+
