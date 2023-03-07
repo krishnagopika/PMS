@@ -47,11 +47,8 @@ public class PhysicianAvailabilityDao {
 	public PhysicianAvailabilityResponse updatePhysicianAvailability(int id, PhysicianAvailabilityRequest physicianAvailabilityRequest) throws UpdateFailedException {
 		try {
 			
-			PhysicianAvailability  physicianAvailability= PhysicianAvailability.builder()
-					.availability(physicianAvailabilityRequest.isAvailability())
-					.date(physicianAvailabilityRequest.getDate())
-					.email(physicianAvailabilityRequest.getEmail())
-					.build();
+			PhysicianAvailability  physicianAvailability= physicianAvailabilityRepository.findById(id).get();
+			physicianAvailability.setDate(physicianAvailabilityRequest.getDate());
 			physicianAvailabilityRepository.save(physicianAvailability);
 			physicianAvailability= physicianAvailabilityRepository.findById(id).get();
 			

@@ -133,15 +133,13 @@ private final AppointmentRepository appointmentRepository;
         
 		
 		    try {
-			Appointment appointment = Appointment.builder()
-					.date(appointmentRequest.getDate())
-					.acceptance(appointmentRequest.getAcceptance())
-					.id(id)
-					.build();
+		    Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
+			Appointment appointment = optionalAppointment.get();
+			appointment.setAcceptance(appointmentRequest.getAcceptance());
 			
 			appointmentRepository.save(appointment);
 			
-			Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
+			optionalAppointment = appointmentRepository.findById(id);
 			
 			appointment = optionalAppointment.get();
 			return AppointmentResponse.builder()
