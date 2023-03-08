@@ -19,7 +19,7 @@ import { DoctorService } from 'src/app/service/doctor/doctor.service';
 export class DrAppointmentComponent {
   dobFormControl = new FormControl('', [Validators.required]);
   currentDate = new Date();
-  displayedColumns: string[] = ['id', 'name', 'booked', 'notes', 'action'];
+  displayedColumns: string[] = ['id', 'patient_id', 'submissionDate', 'reason', 'action'];
   dataSource: any;
   email:any;
   appointments:Appointment[]=[];
