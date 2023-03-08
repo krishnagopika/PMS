@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,11 +32,12 @@ import lombok.extern.log4j.Log4j2;
 @RequiredArgsConstructor
 @Log4j2
 @RequestMapping("/api/")
+
 public class AppointmentController {
 
 	private final AppointmentService appointmentService;
 
-	@PostMapping("public/appointment")
+	@PostMapping("appointment")
 	@ResponseStatus(HttpStatus.CREATED)
 	public String createAppointment(@RequestBody AppointmentRequest appointmentRequest) {
 		
@@ -61,7 +63,7 @@ public class AppointmentController {
 		}
 	}
 
-	  @GetMapping("public/appointment/")
+	  @GetMapping("appointments")
 	  @ResponseStatus(HttpStatus.OK) 
 	  public List<AppointmentResponse> getAllAppointmentsOfPatient(@RequestParam int patient_id){ 
 		  try {
@@ -73,8 +75,8 @@ public class AppointmentController {
 			}
 	  }
 	  
-	  @GetMapping("appointment/id/")
-	  @ResponseStatus(HttpStatus.FOUND) 
+	  @GetMapping("id/")
+	  @ResponseStatus(HttpStatus.OK) 
 	  public AppointmentResponse getAppointment(@RequestParam int id) throws RetrievalFailedException, AppointmentServiceException{ 
 	     try {
 		  return appointmentService.getAppointment(id);
@@ -86,7 +88,7 @@ public class AppointmentController {
 	  
 	  }
 	  
-	  @DeleteMapping("public/appointment/")
+	  @DeleteMapping("appointment/")
 	  @ResponseStatus(HttpStatus.OK) 
 	  public AppointmentResponse deleteAppointment(@RequestParam int id) throws DeleteFailedException, AppointmentServiceException {
 		  try {
@@ -99,8 +101,8 @@ public class AppointmentController {
 		  
 	  }
 	  
-	  @GetMapping("appointment/date/")
-	  @ResponseStatus(HttpStatus.FOUND) 
+	  @GetMapping("date/")
+	  @ResponseStatus(HttpStatus.OK) 
 	  public List<AppointmentResponse>  getAllAppointmentsonDate(@RequestParam String date){ 
 		  try {
 	  return appointmentService.getAppointmentonsonDate(date);
@@ -110,11 +112,11 @@ public class AppointmentController {
 				throw new HttpClientErrorException(HttpStatusCode.valueOf(500));			
 			}
 	  }
-	  @GetMapping("appointment/acceptance/")
-	  @ResponseStatus(HttpStatus.FOUND) 
+	  @GetMapping("appointments/")
+	  @ResponseStatus(HttpStatus.OK) 
 	  public List<AppointmentResponse>  getAllAppointmentsofType(@RequestParam String date, @RequestParam String acceptance){ 
 		  try {
-	  return appointmentService.getAllAppointmentsofAppointment(date, acceptance);
+	  return appointmentService.getAllAppointmentsofType(date, acceptance);
 		  }
 		  catch(Exception e) {
 				log.error(e.getMessage());
@@ -122,9 +124,9 @@ public class AppointmentController {
 			}
 	  
 	  } 
-	  @GetMapping("appointment/physician/")
-	  @ResponseStatus(HttpStatus.FOUND) 
-	  public List<AppointmentResponse>  getAllAppointmentsByPhysicianEmail(@RequestParam String email, @RequestParam String acceptance){ 
+	  @GetMapping("appointment/{email}/")
+	  @ResponseStatus(HttpStatus.OK) 
+	  public List<AppointmentResponse>  getAllAppointmentsByPhysicianEmail(@PathVariable String email, @RequestParam String acceptance){ 
 		  try {
 	  return appointmentService.getAllAppointmentsByPhysicianEmail(email,acceptance);
 		  }catch(Exception e) {
@@ -133,9 +135,9 @@ public class AppointmentController {
 			}
 	  
 	  } 
-	  @GetMapping("appointment/date/physician/")
-	  @ResponseStatus(HttpStatus.FOUND) 
-	  public List<AppointmentResponse>  getAllAppointmentsByPhysicianEmailAndDate(@RequestParam String email, @RequestParam String acceptance, @RequestParam String date){ 
+	  @GetMapping("appointment/{email}/{date}")
+	  @ResponseStatus(HttpStatus.OK) 
+	  public List<AppointmentResponse>  getAllAppointmentsByPhysicianEmailAndDate(@PathVariable String email, @RequestParam String acceptance, @PathVariable String date){ 
 		  try {
 	  return appointmentService.getAllAppointmentsByPhysicianEmailAndDate(email,acceptance, date);
 		  }

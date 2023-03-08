@@ -22,7 +22,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, Intege
 	@Query(value = "SELECT * FROM appointment a WHERE a.physician_email =:email AND a.acceptance=:acceptance AND a.date =:date", 
 			  nativeQuery = true)
 	List<Appointment> findAppointmentsByPhysicianEmailAndDate( @Param("email") String email, @Param("acceptance") String acceptance, @Param("date") String date );
-	@Query(value = "SELECT * FROM appointment a WHERE a.patient_id =:patient_id", 
+	@Query(value = "SELECT * FROM appointment a WHERE a.patient_id =:patient_id ORDER BY a.id DESC", 
 			  nativeQuery = true)
 	List<Appointment> findAppointmentsByPatientId( @Param("patient_id") int patient_id);
 }

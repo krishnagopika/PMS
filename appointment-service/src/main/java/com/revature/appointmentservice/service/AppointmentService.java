@@ -93,10 +93,10 @@ public class AppointmentService {
 		}
 	}
 
-	public List<AppointmentResponse> getAllAppointmentsofAppointment(String date, String acceptance) throws AppointmentServiceException {
+	public List<AppointmentResponse> getAllAppointmentsofType(String date, String acceptance) throws AppointmentServiceException {
 		try {
 		
-		return appointmentDAO.getAllAppointmentsofAppointment(date, acceptance);
+		return appointmentDAO.getAllAppointmentsofType(date, acceptance);
 		}
 		catch(Exception e) {
 			log.error(e.getMessage());

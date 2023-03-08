@@ -133,19 +133,13 @@ private final AppointmentRepository appointmentRepository;
         
 		
 		    try {
-			Appointment appointment = Appointment.builder()
-					.reason(appointmentRequest.getReason())
-					.date(appointmentRequest.getDate())
-					.submissionDate(appointmentRequest.getSubmissionDate())
-					.acceptance(appointmentRequest.getAcceptance())
-					.patientId(appointmentRequest.getPatientId())
-					.physicianEmail(appointmentRequest.getPhysicianEmail())
-					.id(id)
-					.build();
+		    Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
+			Appointment appointment = optionalAppointment.get();
+			appointment.setAcceptance(appointmentRequest.getAcceptance());
 			
 			appointmentRepository.save(appointment);
 			
-			Optional<Appointment> optionalAppointment = appointmentRepository.findById(id);
+			optionalAppointment = appointmentRepository.findById(id);
 			
 			appointment = optionalAppointment.get();
 			return AppointmentResponse.builder()
@@ -178,7 +172,7 @@ private final AppointmentRepository appointmentRepository;
 		}
 	}
 
-	public List<AppointmentResponse> getAllAppointmentsofAppointment(String date, String acceptance) throws RetrievalFailedException {
+	public List<AppointmentResponse> getAllAppointmentsofType(String date, String acceptance) throws RetrievalFailedException {
 		try {
         List<Appointment> appointments = appointmentRepository.findAppointmentsByDateAndAcceptance(date, acceptance);
 		return appointments.stream().map(appointment -> mapToAppointmentResponse(appointment)).toList();
