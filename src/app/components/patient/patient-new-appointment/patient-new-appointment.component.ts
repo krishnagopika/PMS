@@ -54,7 +54,10 @@ export class PatientNewAppointmentComponent {
 
   }
   searchDoctors(date:Date){
+
     console.log(date)
+    this.AvaialblePhysicians=[];
+    this.dname=[];
 
     for(let physicianAvailability of this.AllPhysicianAvailabilities)
     {
@@ -63,6 +66,7 @@ export class PatientNewAppointmentComponent {
       if(physicianAvailability.date.includes(this.appointmentDate.toDateString())){
         this.AvaialblePhysicians.push(physicianAvailability.email);
         console.log(physicianAvailability.email)
+        console.log(this.AvaialblePhysicians);
       }
        
     }

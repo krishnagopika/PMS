@@ -1,7 +1,7 @@
 import { Component, Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { MatCalendarCellClassFunction } from '@angular/material/datepicker';
+import { MatCalendarCellClassFunction, MatCalendarCellCssClasses } from '@angular/material/datepicker';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { PhysicianAvailability } from 'src/app/model/physician-availability';
 
@@ -56,6 +56,7 @@ export class AdmDrScheduleNewComponent {
       }
       calendar.updateTodaysDate();
     }
+    
   }
 
   getDateOnly(date: Date):string {

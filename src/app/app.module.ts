@@ -42,7 +42,7 @@ import { PatientNewAppointmentComponent } from './components/patient/patient-new
 import { PatientHealthInfoComponent } from './components/patient/patient-health-info/patient-health-info.component';
 import { PostloginToolbarPatientComponent } from './components/patient/postlogin-toolbar-patient/postlogin-toolbar-patient.component';
 import { AdmDrSheduleDelComponent } from './components/admin/adm-dr-shedule-del/adm-dr-shedule-del.component';
-import { PatientHealthRecordComponent } from './components/patient/patient-health-record/patient-health-record.component';
+import { PatientHealthRecordComponent } from './components/doctor/patient-health-record/patient-health-record.component';
 import { AppointmentConfirmDialogComponent } from './components/doctor/appointment-confirm-dialog/appointment-confirm-dialog.component';
 import { NurAddDiagnosisInfoComponent } from './components/nurse/nur-add-diagnosis-info/nur-add-diagnosis-info.component';
 import { NurAddAllergiesComponent } from './components/nurse/nur-add-allergies/nur-add-allergies.component';
@@ -51,7 +51,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import { DrNewObservationComponent } from './components/doctor/dr-new-observation/dr-new-observation.component';
 import { HealthInfoComponent } from './components/common/health-info/health-info.component';
 import { NewPrescriptionDialogComponent } from './components/doctor/new-prescription-dialog/new-prescription-dialog.component';
-import { ViewPrescriptionDialogComponent } from './components/common/view-prescription-dialog/view-prescription-dialog.component';
+import { ViewPrescriptionDialogComponent } from './components/doctor/view-prescription-dialog/view-prescription-dialog.component';
 import { PatientProfileComponent } from './components/patient/patient-profile/patient-profile.component';
 import { AdminProfileComponent } from './components/common/admin-profile/admin-profile.component';
 import { PatientForgotPasswordComponent } from './components/patient/patient-forgot-password/patient-forgot-password.component';

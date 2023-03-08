@@ -68,7 +68,7 @@ export class NurAddDiagnosisInfoComponent implements OnInit{
     this.appointment_id=history.state.appointment_id;
      
       nurseService.getRecentVisitDetails(this.patient_id).subscribe(
-        (data)=>{this.visitdetails=data,this.patient_id=this.visitdetails.patient_id, this.allergy=this.visitdetails.allergy
+        (data)=>{this.visitdetails=data,this.patient_id=this.visitdetails.patient_id,this.blood_group=this.visitdetails.blood_group; this.allergy=this.visitdetails.allergy
            console.log(data, " ", this.allergy);},
        
         err => {

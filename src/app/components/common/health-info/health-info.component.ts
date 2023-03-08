@@ -4,7 +4,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { Location } from '@angular/common'
-import { ViewPrescriptionDialogComponent } from '../view-prescription-dialog/view-prescription-dialog.component';
+import { ViewPrescriptionDialogComponent } from '../../doctor/view-prescription-dialog/view-prescription-dialog.component';
 
 
 export interface UserData {

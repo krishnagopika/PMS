@@ -45,7 +45,7 @@
 
           <ng-container matColumnDef="action">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Action</th>
-            <td mat-cell *matCellDef="let row"> <button mat-button [routerLink]="['/patient-health-record']">Add Diagnosis</button></td>
+            <td mat-cell *matCellDef="let row"> <button mat-button [routerLink]="['/patient-health-record']" [state]="{ appointment_id:row.id, patient_id:row.patientId, reason:row.reason }">Add Diagnosis</button></td>
           </ng-container>
 
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

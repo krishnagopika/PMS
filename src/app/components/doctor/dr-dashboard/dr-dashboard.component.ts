@@ -70,5 +70,3 @@ export class DrDashboardComponent implements AfterViewInit {
     }
   }
 }
-
-/** Builds and returns a new User. */

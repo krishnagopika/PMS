@@ -18,7 +18,7 @@
       <div id="div2" class="label" *ngIf="check"><p> <strong>Last consultation on:</strong><span class="text"> {{visitdetails.date|date:'dd-MMM-YYYY'}}</span></p></div>
         <div id="div3"><p>&nbsp;</p></div>
         <div id="div1" class="label"><p><strong>Gender: </strong><span class="text">{{patient?.gender}}</span></p></div>
-        <div id="div2" class="label" *ngIf="check"><p> <strong>Last consultation with:</strong><span class="text">{{visitdetails.physician_email}}</span></p></div>
+        <div id="div2" class="label" *ngIf="check"><p> <strong>Last consultation with:</strong><span class="text">{{visitdetails.physician_email|titlecase}}</span></p></div>
         <div id="div3"><p>&nbsp;</p></div>
         <div id="div1"  class="label"><p><strong>Contact number:</strong> <span class="text">{{patient?.contactNumber}}</span></p></div>
         <div id="div1" class="label" *ngIf="check"><p> <strong>Allergy:</strong><span class="text" *ngFor="let allergy of allergyDisplay"><br>{{allergy.name}}</span></p></div>

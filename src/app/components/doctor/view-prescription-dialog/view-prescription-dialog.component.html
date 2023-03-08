@@ -1,0 +1,39 @@
+<h2 mat-dialog-title> View prescription details </h2>
+
+<mat-divider></mat-divider>
+<div class="container" >
+    <mat-card>
+
+      <mat-card-content>
+        <div class="mat-elevation-z8">
+          <table mat-table [dataSource]="dataSource" matSort>
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
+              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Medicine/Drug Name</th>
+              <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            </ng-container>
+            <ng-container matColumnDef="email" >
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Dosage</th>
+              <td mat-cell *matCellDef="let row"> {{row.email}}</td>
+            </ng-container>
+            <ng-container matColumnDef="contact">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Notes</th>
+              <td mat-cell *matCellDef="let row"> {{row.contact}} </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr class="mat-row" *matNoDataRow>
+              <td class="mat-cell" colspan="4">No Prescriptions Available.</td>
+            </tr>
+          </table>
+          <!-- <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator> -->
+        </div>
+        <div mat-dialog-actions align="end">
+         <button mat-raised-button color="primary" (click)="back()" >Close</button></div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+  

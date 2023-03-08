@@ -14,7 +14,7 @@ import { PatientDashboardComponent } from './components/patient/patient-dashboar
 import { PatientHealthInfoComponent } from './components/patient/patient-health-info/patient-health-info.component';
 import { AdmDrScheduleNewComponent } from './components/admin/adm-dr-schedule-new/adm-dr-schedule-new.component';
 import { NurAddDiagnosisInfoComponent } from './components/nurse/nur-add-diagnosis-info/nur-add-diagnosis-info.component';
-import { PatientHealthRecordComponent } from './components/patient/patient-health-record/patient-health-record.component';
+import { PatientHealthRecordComponent } from './components/doctor/patient-health-record/patient-health-record.component';
 import { HealthInfoComponent } from './components/common/health-info/health-info.component';
 import { PatientProfileComponent } from './components/patient/patient-profile/patient-profile.component';
 import { AdminProfileComponent } from './components/common/admin-profile/admin-profile.component';
