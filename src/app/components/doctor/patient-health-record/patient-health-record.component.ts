@@ -10,100 +10,42 @@ import { ViewPrescriptionDialogComponent } from '../view-prescription-dialog/vie
 import { DoctorService } from 'src/app/service/doctor/doctor.service';
 import { Allergy } from 'src/app/model/allergy';
 import { HealthRecord } from 'src/app/model/health-record';
+import { DrUpdateObservationComponent } from '../dr-update-observation/dr-update-observation.component';
+import { Router } from '@angular/router';
+import { HealthInfoComponent } from '../../common/health-info/health-info.component';
 
-export interface UserData {
-  id: string;
-  testConducted: string;
-  expectedResult: string;
-  actualResult: string;
-  status: string;
-  remarks: string;
-}
-const NOTES: string[] = [
-  'Ear',
-  'Nose',
-  'Throat',
-  'Eyes',
-  'Bones',
-  'Brain',
-  'Muscle',
-  'Brain',
-  'Stomach',
-  'Lungs',
-  'Kidney',
-  'Liver',
-  'Heart',
-  'Nerves'
-];
-const RE: string[] = [
-  'Poor',
-  'Below Average',
-  'Average',
-  'Above Average',
-  'Better',
-  'Good',
-  'Early',
-  'In Progress',
-  'Rehab',
-  'Time taking',
-  'Above Average',
-  'Better',
-  'Good',
-  'Early',
-  'In Progress',
-  'Rehab',
-  'Time taking',
-  'Bed Rest',
-  'On medication'
-];
-const NAMES: string[] = [
-  'Maia',
-  'Asher',
-  'Olivia',
-  'Atticus',
-  'Amelia',
-  'Jack',
-  'Charlotte',
-  'Theodore',
-  'Isla',
-  'Oliver',
-  'Isabella',
-  'Jasper',
-  'Cora',
-  'Levi',
-  'Violet',
-  'Arthur',
-  'Mia',
-  'Thomas',
-  'Elizabeth',
-];
 @Component({
   selector: 'app-patient-health-record',
   templateUrl: './patient-health-record.component.html',
   styleUrls: ['./patient-health-record.component.css']
 })
 export class PatientHealthRecordComponent  implements AfterViewInit{
-  displayedColumns: string[] = ['id', 'testConducted',  'actualResult', 'status', 'remarks', 'action'];
-  dataSource: MatTableDataSource<UserData>;
+  displayedColumns: string[] = ['id', 'name',  'result', 'action'];
+  dataSource: any;
   visitdetails:any;
-  patient_id=history.state.patient_id;
-  appointmnet_id=history.state.appointent_id;
+  patient_id:number=history.state.patient_id;
+  appointment_id=history.state.appointment_id;
   patient:any;
   allergy:Allergy[]=[];
   allergiesRetreived:any;
+  key_notes="";
   age:number=0;
   check=false;
   reason=history.state.reason;
   today: string = new Date().getDate() + '-' + (new Date().getMonth()+1) + '-' + new Date().getFullYear();
   healthRecord:any;
+  tests:any;
+  prescription:any;
+  visit_details_id:any;
 
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public dialog: MatDialog, private doctorService:DoctorService) {
-    console.log(this.reason);
+  constructor(public dialog: MatDialog, private doctorService:DoctorService, private router: Router) {
+    console.log(this.reason, this.patient_id);
     this.patient_id=history.state.patient_id;
+    
     doctorService.getPatient(this.patient_id).subscribe(
       (data)=>{this.patient=data, console.log(data,this.patient_id);
         if(this.patient?.gender=='M'){
@@ -127,15 +69,29 @@ export class PatientHealthRecordComponent  implements AfterViewInit{
       }
       );
      
-      doctorService.getHealthRecordByAppointmnetId(this.appointmnet_id).subscribe(
-        (data)=>{this.visitdetails=data,this.patient_id=this.visitdetails.patient_id,
-           console.log(data, " ", this.allergy), this.check=false;},
+      doctorService.getHealthRecordByAppointmnetId(this.appointment_id).subscribe(
+        (data)=>{this.visitdetails=data,
+           console.log(this.visitdetails, " ", this.allergy),this.visit_details_id=this.visitdetails.visitDetails_id, this.check=false,console.log("id:",this.visit_details_id,this.visitdetails.visitDetails_id),this.key_notes=this.visitdetails.key_notes,this.patient_id=this.visitdetails.patient_id,
+           doctorService.getTest(this.visit_details_id).subscribe(
+            (data)=>{
+              this.tests=data
+              console.log(this.tests), this.dataSource=new MatTableDataSource(this.tests);
+            },
+            err => {
+              console.log(err.message)
+              
+            }
+          );
+           ;
+          },
        
         err => {
           console.log(err.message),
           this.check=true;
         }
         );
+        
+     
         doctorService.getAllAlergies().subscribe(
           (data)=>{this.allergiesRetreived=data, console.log("data",this.allergiesRetreived,this.visitdetails)
             for (let a of this.allergiesRetreived){
@@ -152,48 +108,60 @@ export class PatientHealthRecordComponent  implements AfterViewInit{
           }
           );
           
-      doctorService.getPatientHealthRecords(this.patient_id).subscribe(
-        (data)=>{this.visitdetails=data,this.patient_id=this.visitdetails.patient_id,
-           console.log(data, " ", this.allergy)},
-       
-        err => {
-          console.log(err.message)
-          
-        }
-        );
-
-      
-    // Create 100 users
-    const users = Array.from({length: 5}, (_, k) => createNewUser(k + 1));
-
-    // Assign the data to the data source for the table to render
-    this.dataSource = new MatTableDataSource(users);
 } 
-openDialog() {
+newTest() {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.autoFocus = false;
   dialogConfig.disableClose = false;
   dialogConfig.data = {
+    "visit_details_id": this.visit_details_id
   }
   const dialogRef = this.dialog.open(DrNewObservationComponent, dialogConfig);
 }
-openDialog1() {
+editTest(id:number) {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.autoFocus = false;
   dialogConfig.disableClose = false;
   dialogConfig.data = {
+    "visit_details_id": this.visit_details_id,
+    "test_id":id
+  }
+  const dialogRef = this.dialog.open(DrUpdateObservationComponent, dialogConfig);
+}
+addPrescription() {
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.autoFocus = false;
+  dialogConfig.disableClose = false;
+  dialogConfig.data = {
+    "visit_details_id": this.visit_details_id
   }
   const dialogRef = this.dialog.open(NewPrescriptionDialogComponent, dialogConfig);
 }
 
-openDialog2() {
+viewPrescription() {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.autoFocus = false;
   dialogConfig.disableClose = false;
   dialogConfig.data = {
+    "visit_details_id": this.visit_details_id
+
   }
   const dialogRef = this.dialog.open(ViewPrescriptionDialogComponent, dialogConfig);
 }
+updateVisitDetails(){
+  this.visitdetails.key_notes=this.key_notes;
+  this.doctorService.updateVisitDetails(this.visitdetails).subscribe(
+    (data)=>{this.key_notes=data.key_notes,console.log(data);
+    },
+    err=>{
+      console.log(err.message);
+
+    }
+  );
+
+
+  }
+
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -203,24 +171,23 @@ openDialog2() {
     const dialogConfig = new MatDialogConfig();
     const dialogRef = this.dialog.open(AdmDrSheduleDelComponent, dialogConfig);
   }
+  deleteTest(id:number){
+    this.doctorService.deleteTest(id).subscribe(
+      (data)=>{
+        console.log(data);
+      },
+      err=>{
+          console.log(err.message)
+      }
+    )
+  }
+  onNavToHealthRecords() {
+    console.log( "Hello",this.patient_id)
+    this.router.navigate([HealthInfoComponent], { state: {patientId: this.patient_id} });
+ }
   
 }
 
 
 
-function createNewUser(id: number): UserData {
-  const name =
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))] +
-    ' ' +
-    NAMES[Math.round(Math.random() * (NAMES.length - 1))].charAt(0) +
-    '.';
 
-  return {
-    id: id.toString(),
-    testConducted: NOTES[Math.round(Math.random() * (NOTES.length - 1))],
-    expectedResult: name,
-    actualResult: name,
-    status: RE[Math.round(Math.random() * (NOTES.length - 1))],
-    remarks: RE[Math.round(Math.random() * (NOTES.length - 1))]
-  };
-}

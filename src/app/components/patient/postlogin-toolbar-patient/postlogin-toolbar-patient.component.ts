@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class PostloginToolbarPatientComponent {
   
+  patient_id=sessionStorage.getItem('patient_id')
 }

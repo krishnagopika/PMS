@@ -8,7 +8,7 @@
       </mat-card-header>
       
         <mat-card-content mat-dialog-actions align="end">
-        <button mat-raised-button  color="primary" [routerLink]="['/health-info']" >View Previous Medication History</button>
+        <button mat-raised-button  color="primary"  [routerLink]="['/health-info']" [state]="{patient_id: patient_id}" >View Previous Medication History</button>
       </mat-card-content>
    
     
@@ -64,6 +64,10 @@
       <br>
       <label class="label2"><b>Blood Pressure</b></label><span class="details2">: {{visitdetails.blood_pressure_systolic}}/{{visitdetails.blood_pressure_diastolic}}</span><br>
   </mat-card-content>
+  <mat-card-content>
+    <br>
+    <label class="label2"><b>Body Temperature</b></label><span class="details2">: {{visitdetails.body_temperature}}</span><br>
+</mat-card-content>
   </div>
   <div id="item3">
   <mat-card-content>
@@ -89,7 +93,7 @@
     <mat-card-content>
             <h4 id="subtitle">  <strong>Observations Made</strong> </h4>
             <div mat-dialog-actions align="end">
-                <button mat-raised-button color="primary" (click)="openDialog()">New Observation</button>
+                <button mat-raised-button color="primary" (click)="newTest()">New Observation</button>
               </div><br>
             <div class="mat-elevation-z8">
                 <table mat-table [dataSource]="dataSource" matSort>
@@ -97,35 +101,31 @@
                     <th mat-header-cell *matHeaderCellDef mat-sort-header> ID</th>
                     <td mat-cell *matCellDef="let row"> {{row.id}} </td>
                   </ng-container>
-                  <ng-container matColumnDef="testConducted">
+                  <ng-container matColumnDef="name">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Test Conducted</th>
-                    <td mat-cell *matCellDef="let row"> {{row.testConducted}}</td>
+                    <td mat-cell *matCellDef="let row"> {{row.name}}</td>
                   </ng-container>
-                  <!-- <ng-container matColumnDef="expectedResult">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Expected Result</th>
-                    <td mat-cell *matCellDef="let row"> {{row.expectedResult}} </td>
-                  </ng-container> -->
-                  <ng-container matColumnDef="actualResult">
+                  <ng-container matColumnDef="result">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Actual Result</th>
-                    <td mat-cell *matCellDef="let row"> {{row.actualResult}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="status">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
-                    <td mat-cell *matCellDef="let row"> {{row.status}} </td>
-                  </ng-container>
-                  <ng-container matColumnDef="remarks">
-                    <th mat-header-cell *matHeaderCellDef mat-sort-header>Remarks</th>
-                    <td mat-cell *matCellDef="let row"> {{row.remarks}} </td>
+                    <td mat-cell *matCellDef="let row"> {{row.result}} </td>
                   </ng-container>
                   <ng-container matColumnDef="action">
                     <th mat-header-cell *matHeaderCellDef mat-sort-header>Edit/ Delete </th>
-                    <td mat-cell *matCellDef="let row"> <button mat-raised-button color="primary" (click)="openDialog()">Edit</button>&nbsp;&nbsp;
-                        <button mat-raised-button color="accent" (click)="closeDialog()">Delete</button>
+                    <td mat-cell *matCellDef="let row"> <button mat-raised-button color="primary" (click)="editTest(row.id)">Edit</button>&nbsp;&nbsp;
+                        <button mat-raised-button color="accent" (click)="deleteTest(row.id)">Delete</button>
                     </td>
                   </ng-container>
+                  <tr class="mat-row" *matNoDataRow>
+                    <td class="mat-cell" colspan="4">No Prescriptions Available.</td>
+                  </tr>
+                    
+                 
+                  
                   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
                   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> 
+                  
                 </table>
+             
                 <!-- <mat-paginator [pageSizeOptions]="[4, 8, 12, 16]" aria-label="Select page of users"></mat-paginator> -->
               </div>
         </mat-card-content><br>
@@ -134,23 +134,23 @@
         <div id="div12">
             <b>Enter Prescription: </b>
             <mat-card-content>
-              <a mat-raised-button  color="primary" (click)="openDialog1()">+</a>
+              <a mat-raised-button  color="primary" (click)="addPrescription()">+</a>
             </mat-card-content>
             <b>View Prescription: </b>
             <mat-card-content>
-              <a mat-raised-button  color="primary" (click)="openDialog2()">view</a>
+              <a mat-raised-button  color="primary" (click)="viewPrescription()">view</a>
             </mat-card-content>
           </div> 
           <div id="div4">
             <p><strong>Enter Key Notes: </strong></p>
             <mat-form-field class="ui-full-width">  
                 <mat-label>Key Notes</mat-label>
-                <textarea matInput></textarea>
+                <textarea matInput [(ngModel)]="key_notes">{{key_notes}}</textarea>
             </mat-form-field>
           </div>
      
-          <div  align="end"><button mat-raised-button color="primary" [routerLink]="['/dr-dashboard']">Save</button>&nbsp;
-            <button mat-raised-button [routerLink]="['/dr-dashboard']">Cancel</button>
+          <div  align="end"><button mat-raised-button color="primary" (click)="updateVisitDetails()" >Save</button>&nbsp;
+            <button mat-raised-button  [routerLink]="['/dr-dashboard']">Cancel</button>
         </div>
 
       </mat-card-content>

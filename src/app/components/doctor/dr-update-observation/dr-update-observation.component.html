@@ -1,7 +1,7 @@
-<h2 mat-dialog-title> {{message}} </h2>
+<h2 mat-dialog-title> {{message}}</h2>
 
 <mat-divider></mat-divider>
-<mat-dialog-content [formGroup] = "form" *ngIf="!testAdded" >
+<mat-dialog-content [formGroup] = "form" *ngIf="!testUpdated">
     <mat-grid-list cols="2" rowHeight="2:1">
         <h3 mat-dialog-subtitle> Verified with test generated report</h3>
         
@@ -25,6 +25,6 @@
     </mat-grid-list>
 </mat-dialog-content>
         <div mat-dialog-actions align="end">
-            <button mat-raised-button color="primary" mat-dialog-close (click)="saveinfo()" *ngIf="!testAdded">Save</button>
+            <button mat-raised-button color="primary" (click)="saveinfo()" *ngIf="!testUpdated">Save</button>
             <button mat-raised-button  mat-dialog-close (click)="resetinfo()" >Cancel</button>
           </div>

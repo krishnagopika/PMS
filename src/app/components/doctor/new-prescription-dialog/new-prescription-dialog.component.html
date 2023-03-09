@@ -1,13 +1,13 @@
-<h2 mat-dialog-title> Add prescription details </h2>
+<h2 mat-dialog-title> {{message}} </h2>
 
 <mat-divider></mat-divider>
-<mat-dialog-content [formGroup] = "form" >
+<mat-dialog-content [formGroup] = "form" *ngIf="!prescriptionAdded">
     <mat-grid-list cols="2" rowHeight="2:1">
         <h3 mat-dialog-subtitle>All items are available at our pharmacy</h3>
             <!-- <h4> <strong>Test Conducte: &nbsp;</strong></h4> -->
             <mat-form-field class="ui-full-width">  
                 <mat-label>Medicine/Drug name</mat-label>
-                <input matInput placeholder="Paracetomol" formControlName="mname" required>
+                <input matInput placeholder="Paracetomol" formControlName="mname" required [(ngModel)]="prescription.name" >
                 <mat-error *ngIf="form.get('mname')?.invalid || form.get('mname')?.dirty || form.get('mname')?.touched"><strong>Medicine/Drug name is required</strong></mat-error>
               </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -15,23 +15,13 @@
             <!-- <h4> <strong>Status: &nbsp;</strong></h4> -->
             <mat-form-field  class="ui-full-width">  
                 <mat-label>Dosage</mat-label>
-                <input matInput placeholder="1-1-1" formControlName="dosage" required>
+                <input matInput placeholder="1-1-1" formControlName="dosage" required [(ngModel)]="prescription.dosage">
                 <mat-error *ngIf="form.get('dosage')?.invalid || form.get('dosage')?.dirty || form.get('dosage')?.touched"><strong>Dosage is required</strong></mat-error>
               </mat-form-field>&nbsp;&nbsp;&nbsp;&nbsp;
             <!-- <h4> <strong>Actual Result: &nbsp;</strong></h4> -->
-
-
-        <div id="div1">
-            <!-- <h4> <strong>Remarks: &nbsp;</strong></h4> -->
-            <mat-form-field class="ui-full-width">  
-                <mat-label>Note</mat-label>
-                <input matInput placeholder="After food and 3 times a day" formControlName="notes">
-                <mat-error *ngIf="form.get('notes')?.invalid || form.get('notes')?.dirty || form.get('notes')?.touched"></mat-error>
-              </mat-form-field>
-        </div>
     </mat-grid-list>
 </mat-dialog-content>
         <div mat-dialog-actions align="end">
-            <button mat-raised-button color="primary" mat-dialog-close (click)="saveinfo()">Save</button>
+            <button mat-raised-button color="primary" (click)="saveinfo()">Save</button>
             <button mat-raised-button  mat-dialog-close (click)="resetinfo()" >Cancel</button>
           </div>

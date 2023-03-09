@@ -56,8 +56,7 @@ openDialog() {
   dialogConfig.autoFocus = false;
   dialogConfig.disableClose = false;
   dialogConfig.data = {
-    title : 'Basic Diagnosis Info',
-    buttonName: 'Save'
+    patient_id: this.pattient_id
   }
   const dialogRef = this.dialog.open(PatientNewAppointmentComponent, dialogConfig);
 }

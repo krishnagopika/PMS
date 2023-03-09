@@ -60,6 +60,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { AdmDrScheduleUpdateComponent } from './components/admin/adm-dr-schedule-update/adm-dr-schedule-update.component';
+import { DrUpdateObservationComponent } from './components/doctor/dr-update-observation/dr-update-observation.component';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { AdmDrScheduleUpdateComponent } from './components/admin/adm-dr-schedule
     AdminProfileComponent,
     PatientForgotPasswordComponent,
     PatientResetPasswordComponent,
-    AdmDrScheduleUpdateComponent
+    AdmDrScheduleUpdateComponent,
+    DrUpdateObservationComponent
   ],
   imports: [
     BrowserModule,

@@ -53,9 +53,9 @@ export class DoctorService {
  
   public getHealthRecordByAppointmnetId(appointment_id:number):Observable <any>{
     const params = new HttpParams()
-   .set('patient_id', appointment_id);
+   .set('appointment_id', appointment_id);
     
-    return this.http.get<VisitDetails>('http://localhost:8089/api/health-record', {params});
+    return this.http.get<VisitDetails>('http://localhost:8089/api/health-record/', {params});
     
   }
 
@@ -65,42 +65,57 @@ export class DoctorService {
     return this.http.put<HealthRecord>('http://localhost:8089/api/health-record', healtRecord,{params})
   }
 
-  public deleteTest(visit_details_id:number){
+  public getTest(visit_details_id:number){
     const params = new HttpParams()
     .set('visit_details_id', visit_details_id)
-    return this.http.delete<Test>('http://localhost:8089/api/test',{params})
+    return this.http.get<Test[]>('http://localhost:8089/api/health-record/test',{params})
+
+  }
+  public getPrescription(visit_details_id:number){
+    const params = new HttpParams()
+    .set('visit_details_id', visit_details_id)
+    return this.http.get<Prescription>('http://localhost:8089/api/health-record/prescription',{params})
+
+  }
+
+  public deleteTest(id:number){
+    const params = new HttpParams()
+    .set('test_id', id)
+    return this.http.delete<Test>('http://localhost:8089/api/health-record/test',{params})
 
   }
   public deletePrescription(visit_details_id:number){
     const params = new HttpParams()
     .set('visit_details_id', visit_details_id)
-    return this.http.delete<Test>('http://localhost:8089/api/prescription',{params})
+    return this.http.delete<Test>('http://localhost:8089/api/health-record/prescription',{params})
 
   }
-  public addPrescription(visit_details_id:number){
+  public addPrescription(prescription:Prescription):Observable<any>{
+    return this.http.post('http://localhost:8089/api/health-record/prescription',prescription, {responseType: 'text'})
+
+  }
+  public updatePrescription(visit_details_id:number):Observable<any>{
     const params = new HttpParams()
     .set('visit_details_id', visit_details_id)
-    return this.http.delete<Prescription>('http://localhost:8089/api/prescription',{params})
+    return this.http.put<Prescription>('http://localhost:8089/api/health-record/prescription',{params})
 
   }
-  public updatePrescription(visit_details_id:number){
+  public addTest(test:Test):Observable<any>{
+    return this.http.post('http://localhost:8089/api/health-record/test',test, {responseType: 'text'})
+
+  }
+  public updateTest(id:number, test:Test):Observable<any>{
     const params = new HttpParams()
-    .set('visit_details_id', visit_details_id)
-    return this.http.delete<Prescription>('http://localhost:8089/api/prescription',{params})
+    .set('test_id', id)
+    return this.http.put<Test>('http://localhost:8089/api/health-record/test',test,{params})
 
   }
-  public addTest(visit_details_id:number){
+  public updateVisitDetails(visitDetails:HealthRecord):Observable<any>{
     const params = new HttpParams()
-    .set('visit_details_id', visit_details_id)
-    return this.http.delete<Test>('http://localhost:8089/api/test',{params})
-
+    .set('visit_details_id', visitDetails.visitDetails_id)
+    return this.http.put<VisitDetails>('http://localhost:8089/api/health-record/visit-details',visitDetails,{params});
   }
-  public updateTest(visit_details_id:number){
-    const params = new HttpParams()
-    .set('visit_details_id', visit_details_id)
-    return this.http.delete<Test>('http://localhost:8089/api/prescription',{params})
 
-  }
 
   // Allergy Service
   public getAllAlergies():Observable <any>{

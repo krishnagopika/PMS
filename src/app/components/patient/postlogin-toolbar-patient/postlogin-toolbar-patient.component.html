@@ -7,7 +7,7 @@
         <div class="spacer"></div>
         <div id="right" >
           <a mat-button [routerLink]="['/patient-dashboard']">Dashboard</a>
-          <a mat-button [routerLink]="['/patient-health-info']" >Health Info</a>
+          <a mat-button [routerLink]="['/patient-health-info']" [state]="{ patient_id:patient_id }" >Health Info</a>
           <button mat-icon-button [matMenuTriggerFor]="menu">
             <mat-icon>more_vert</mat-icon>
           </button>
